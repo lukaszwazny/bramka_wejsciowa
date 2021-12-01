@@ -36,8 +36,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
              status_code=500
         )
     
-    except:
+    except Exception as ex:
         logging.info('Unknown error')
+        logging.info(ex)
         return func.HttpResponse(
              "Unknown error",
              status_code=400
