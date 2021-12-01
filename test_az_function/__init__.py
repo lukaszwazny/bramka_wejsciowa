@@ -1,24 +1,44 @@
 import logging
-
 import azure.functions as func
+import fdb
+import json
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
-    name = req.params.get('name')
-    if not name:
-        try:
-            req_body = req.get_json()
-        except ValueError:
-            pass
-        else:
-            name = req_body.get('name')
+    try:
+        logging.info('Connecting to database')
+        con = fdb.connect(
+            host='20.61.35.191', database='/firebird/data/Fitnes.fdb',
+            user='sysdba', password='masterkey', charset='UTF8'
+        )
+        logging.info('Connected to database succesfully')
 
-    if name:
-        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
-    else:
+        logging.info('Getting data')
+        cur = con.cursor()
+        cur.execute("select * from clanovi")
+        names = [item[0] for item in cur.description]
+        resp = cur.fetchall()
+        resp = json.dumps([{names[i]:item[i] for i in range(len(names))} for item in resp], default=str, ensure_ascii=False)
+        logging.info('Got data succesfully')
+
         return func.HttpResponse(
-             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-             status_code=200
+                resp,
+                status_code=200,
+                mimetype='application/json'
+            )
+
+    except fdb.DatabaseError as err:
+        logging.info('Database error :(')
+        return func.HttpResponse(
+             err.args[0],
+             status_code=500
+        )
+    
+    except:
+        logging.info('Unknown error')
+        return func.HttpResponse(
+             "Unknown error",
+             status_code=400
         )
