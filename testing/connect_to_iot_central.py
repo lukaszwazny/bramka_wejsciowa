@@ -115,20 +115,6 @@ class Device:
             msg.content_encoding = 'utf-8'
             msg.content_type = 'application/json'
             await self.device_client.send_message(msg)
-
-            # y_acc_msg = {'y_acc': self.accelerometer.acceleration[1]}
-            # print(y_acc_msg)
-            # msg = Message(json.dumps(y_acc_msg))
-            # msg.content_encoding = 'utf-8'
-            # msg.content_type = 'application/json'
-            # await self.device_client.send_message(msg)
-
-            # z_acc_msg = {'z_acc': self.accelerometer.acceleration[2]}
-            # print(z_acc_msg)
-            # msg = Message(json.dumps(z_acc_msg))
-            # msg.content_encoding = 'utf-8'
-            # msg.content_type = 'application/json'
-            # await self.device_client.send_message(msg)
             time.sleep(0.5)
 
     
