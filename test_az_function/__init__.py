@@ -10,7 +10,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     try:
         logging.info('Connecting to database')
         con = fdb.connect(
-            host='20.61.35.191', database='/firebird/data/Fitnes.fdb',
+            host='51.105.135.4', database='/firebird/data/Fitnes.fdb',
             user='sysdba', password='masterkey', charset='UTF8'
         )
         logging.info('Connected to database succesfully')
