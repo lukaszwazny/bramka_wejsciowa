@@ -30,7 +30,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             resp = convert.convertClanoviToUser(resp)
             resp['roles'] = []
             if resp['ID']:
-                resp['roles'].append('KLIENT')          
+                resp['roles'].append('KLIENT')     
             resp = json.dumps(resp, default=str, ensure_ascii=False)
             logging.info('Converted data succesfully')
 
