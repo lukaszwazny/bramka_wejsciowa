@@ -22,11 +22,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         if identificator_nr and date and hour and package:
 
             cur = database.connect()
+            query = f"SELECT ID FROM CLANOVI WHERE MEMBERID='{identificator_nr}'"
 
-            cur.execute(f"SELECT ID FROM CLANOVI WHERE MEMBERID='{identificator_nr}'")
-            names = [item[0] for item in cur.description]
-            resp = cur.fetchone()
-            resp = {names[i]:safe_list_get(resp, i, None) for i in range(len(names))}
+            resp = database.getOne(cur, query)
             if not resp:
                 return func.HttpResponse(
                     "Nie ma użytkownika o podanym ID!",
@@ -34,10 +32,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 )
             member_id = resp['ID']
 
-            cur.execute(f"SELECT * FROM DOLASCI WHERE DATUM='{date}' AND KORISNIKID = {member_id} AND DATEDIFF(MINUTE FROM CAST(VREMEDOLASKA AS TIME) TO CAST('{hour}' AS TIME)) < 60")
-            names = [item[0] for item in cur.description]
-            resp = cur.fetchall()
-            resp = [{names[i]:safe_list_get(item, i, None) for i in range(len(names))} for item in resp]
+            query = f"SELECT * FROM DOLASCI WHERE DATUM='{date}' AND KORISNIKID = {member_id} AND DATEDIFF(MINUTE FROM CAST(VREMEDOLASKA AS TIME) TO CAST('{hour}' AS TIME)) < 60"
+            resp = database.getMany(cur, query)
             if resp:
                 return func.HttpResponse(
                     json.dumps(resp, default=str, ensure_ascii=False),

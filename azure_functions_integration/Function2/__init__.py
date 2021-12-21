@@ -20,14 +20,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         try:
 
             cur = database.connect()
+            query = f"SELECT u.ID as ID, p.NAZIV, u.BROJTRENINGA, u.BROJDOLAZAKA FROM UPLATE u LEFT OUTER JOIN PROGRAMI p ON u.PROGRAMID = p.ID RIGHT OUTER JOIN CLANOVI c ON c.ID = u.KORISNIKID WHERE c.MEMBERID='{identificator_nr}' AND '{date}' BETWEEN u.DATUMOD AND u.DATUMDO"
 
-            logging.info('Getting data')
-            cur.execute(f"SELECT u.ID as ID, p.NAZIV, u.BROJTRENINGA, u.BROJDOLAZAKA FROM UPLATE u LEFT OUTER JOIN PROGRAMI p ON u.PROGRAMID = p.ID RIGHT OUTER JOIN CLANOVI c ON c.ID = u.KORISNIKID WHERE c.MEMBERID='{identificator_nr}' AND '{date}' BETWEEN u.DATUMOD AND u.DATUMDO")
-            logging.info('Got data succesfully')
-
-            names = [item[0] for item in cur.description]
-            resp = cur.fetchall()
-            resp = [{names[i]:safe_list_get(item, i, None) for i in range(len(names))} for item in resp]
+            resp = database.getMany(cur, query)
             if not resp:
                 resp=json.dumps({'entrance_allowed': False, 'message': 'Brak aktywnego karnetu!'}, ensure_ascii=False)
                 return func.HttpResponse(

@@ -16,7 +16,7 @@ def convertClanoviToUser(clanovi):
     clanovi['postal_code'] = clanovi.pop('ZIP', None)
     clanovi['city'] = clanovi.pop('NAZIV', None)
     clanovi['e_mail'] = clanovi.pop('EMAIL', None)
-    clanovi['aditional_info'] = clanovi.pop('INFO', None)
+    clanovi['additional_info'] = clanovi.pop('INFO', None)
     clanovi['PESEL'] = None
     clanovi['is_active'] = True
     clanovi.pop('JMBG', None)

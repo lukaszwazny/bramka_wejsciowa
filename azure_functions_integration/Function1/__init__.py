@@ -18,15 +18,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         try:
 
             cur = database.connect()
+            query = f"select * from clanovi right outer join mesta on clanovi.mestoid = mesta.id where memberid='{identificator_nr}'"
 
-            logging.info('Getting data')
-            cur.execute(f"select * from clanovi right outer join mesta on clanovi.mestoid = mesta.id where memberid='{identificator_nr}'")
-            logging.info('Got data succesfully')
-
-            logging.info('Converting data')
-            names = [item[0] for item in cur.description]
-            resp = cur.fetchone()
-            resp = {names[i]:safe_list_get(resp, i, None) for i in range(len(names))}
+            resp = database.getOne(cur, query)
             resp = convert.convertClanoviToUser(resp)
             resp['roles'] = []
             if resp['ID']:
