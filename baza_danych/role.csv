@@ -1,0 +1,6 @@
+role_id,role_name,is_active
+1,KLIENT,f
+2,PRACOWNIK RECEPCJI,t
+3,ADMINISTRATOR,t
+4,TRENER,t
+5,WIDZ,t

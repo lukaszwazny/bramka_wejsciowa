@@ -1,0 +1,10 @@
+insert into public."Lesson_type" (name, is_active) values ('WOLNE WEJŚCIE', true);
+insert into public."Lesson_type" (name, is_active) values ('BJJ', true);
+insert into public."Lesson_type" (name, is_active) values ('BJJ 4-8 lat', true);
+insert into public."Lesson_type" (name, is_active) values ('Boks pocz.', true);
+insert into public."Lesson_type" (name, is_active) values ('Boks zaaw.', true);
+insert into public."Lesson_type" (name, is_active) values ('MMA pocz.', true);
+insert into public."Lesson_type" (name, is_active) values ('MMA zaaw.', true);
+insert into public."Lesson_type" (name, is_active) values ('Muay Thai', true);
+insert into public."Lesson_type" (name, is_active) values ('Muay Thai pocz.', true);
+insert into public."Lesson_type" (name, is_active) values ('Combat 56', true);
