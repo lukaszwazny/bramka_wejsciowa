@@ -56,5 +56,5 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         resp=json.dumps(req_body, ensure_ascii=False)
         return func.HttpResponse(
             resp,
-            status_code=200
+            status_code=400
         )

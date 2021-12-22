@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS public."Entrance"
     mode character varying NOT NULL,
     justification character varying,
     "package" character varying,
-    user_id integer,
-    role_id integer,
+    identificator_nr character varying,
+    role_name character varying,
     lesson_type_id integer,
     PRIMARY KEY (entrance_id)
 )
@@ -129,11 +129,6 @@ WITH (
     OIDS = FALSE
 );
 
-ALTER TABLE public."Entrance"
-    ADD FOREIGN KEY (user_id)
-    REFERENCES public."User" (user_id)
-    NOT VALID;
-
 
 ALTER TABLE public."Role_User"
     ADD FOREIGN KEY ("Role_role_id")
@@ -144,12 +139,6 @@ ALTER TABLE public."Role_User"
 ALTER TABLE public."Role_User"
     ADD FOREIGN KEY ("User_user_id")
     REFERENCES public."User" (user_id)
-    NOT VALID;
-
-
-ALTER TABLE public."Entrance"
-    ADD FOREIGN KEY (role_id)
-    REFERENCES public."Role" (role_id)
     NOT VALID;
 
 
