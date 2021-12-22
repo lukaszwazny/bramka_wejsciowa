@@ -60,10 +60,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             logging.info(ex)
             return func.HttpResponse(
                 "Unknown error",
-                status_code=400
+                status_code=401
             )
     else:
         return func.HttpResponse(
-             "Nie podano nr identyfikatora lub dsaty wejścia!",
-             status_code=400
+             "Nie podano nr identyfikatora lub daty wejścia!",
+             status_code=401
         )
