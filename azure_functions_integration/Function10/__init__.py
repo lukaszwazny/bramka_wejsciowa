@@ -57,7 +57,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 if justification.get('justification_id'):
                     response['justification'] = dict(
                         id= justification.get('justification_id'),
-                        name= justification.get('name')
+                        name= justification.get('name'),
+                        description = justification.get('description')
                     )
                 else:
                     #to do wyślij rozkaz nieotwarcia

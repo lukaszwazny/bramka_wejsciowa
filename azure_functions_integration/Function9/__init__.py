@@ -30,7 +30,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             resp = requests.request("PATCH", url, headers={'Content-Type': 'application/json'}, data=json.dumps(data, ensure_ascii=False))
 
             cur = database.connectPostgres()
-            query = f"INSERT INTO public.\"Entrance\"(datetime, mode, user_id) VALUES ('{datetime.combine(date, hour).strftime('%Y-%m-%d %H:%M:%S %z')}', 'WYJŚCIE', (SELECT user_id FROM public.\"User\" WHERE identificator_nr='{identificator_nr}'))"
+            query = f"INSERT INTO public.\"Entrance\"(datetime, mode, identificator_nr) VALUES ('{datetime.combine(date, hour).strftime('%Y-%m-%d %H:%M:%S %z')}', 'WYJŚCIE', '{identificator_nr}')"
             cur.execute(query)
             cur.execute("COMMIT")
 
