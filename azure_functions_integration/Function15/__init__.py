@@ -15,16 +15,29 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     logging.info('Getting parameters')
+    entrance_id = req.params.get('entrance_id')
 
     try:
 
         cur = database.connectPostgres()
-        query = f"SELECT * FROM public.\"Entrance\" e LEFT OUTER JOIN public.\"Lesson_type\" l ON e.lesson_type_id = l.lesson_type_id ORDER BY datetime DESC"
-        entrances = database.getMany(cur, query)
-        for idx, entr in enumerate(entrances):
+        query = f"SELECT * FROM public.\"Entrance\" e LEFT OUTER JOIN public.\"Lesson_type\" l ON e.lesson_type_id = l.lesson_type_id WHERE e.entrance_id={entrance_id}"
+        entrance = database.getOne(cur, query)
+        if not entrance.get('entrance_id'):
+            entrance = dict(
+                id=None,
+                date=None,
+                hour=None,
+                name=None,
+                lesson_type=None,
+                role=None,
+                mode=None,
+                package=None,
+                justification=None
+            )
+        else:
             params = dict(
                 code=get_key(),
-                identificator_nr=entr.get('identificator_nr')
+                identificator_nr=entrance.get('identificator_nr')
             )
             fun7_req = func.HttpRequest('get', '', params=params, body='')
             resp = Function7.main(fun7_req)
@@ -36,19 +49,21 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 resp = dict(
                     name=' ',surname=' '
                 )
-            entrances[idx] = dict(
-                id=entr.get('entrance_id'),
-                date=entr.get('datetime').date(),
-                hour=entr.get('datetime').time(),
+            entrance = dict(
+                id=entrance.get('entrance_id'),
+                date=entrance.get('datetime').date(),
+                hour=entrance.get('datetime').time(),
                 name=resp.get('name', ' ') + ' ' + resp.get('surname',' '),
-                lesson_type=entr.get('name'),
-                role=entr.get('role_name'),
-                mode=entr.get('mode')
+                lesson_type=entrance.get('name'),
+                role=entrance.get('role_name'),
+                mode=entrance.get('mode'),
+                package=entrance.get('package'),
+                justification=entrance.get('justification')
             )
-        
-        entrances = json.dumps(entrances, default=str, ensure_ascii=False)
+            
+        entrance = json.dumps(entrance, default=str, ensure_ascii=False)
         return func.HttpResponse(
-                entrances,
+                entrance,
                 status_code=200,
                 mimetype='application/json'
             )
