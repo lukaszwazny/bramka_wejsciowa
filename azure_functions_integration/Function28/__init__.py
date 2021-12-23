@@ -14,14 +14,20 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     try:
 
-        cur = database.connectPostgres()
-        query = f'SELECT lesson_id, weekday, start_time, end_time FROM public."Lesson" WHERE is_active AND lesson_type_id={lesson_type_id};'
-        lessons = json.dumps(database.getMany(cur, query), default=str, ensure_ascii=False)
-        
-        return func.HttpResponse(
-                lessons,
-                status_code=200,
-                mimetype='application/json'
+        if lesson_type_id:
+            cur = database.connectPostgres()
+            query = f'SELECT lesson_id, weekday, start_time, end_time FROM public."Lesson" WHERE is_active AND lesson_type_id={lesson_type_id};'
+            lessons = json.dumps(database.getMany(cur, query), default=str, ensure_ascii=False)
+            
+            return func.HttpResponse(
+                    lessons,
+                    status_code=200,
+                    mimetype='application/json'
+                )
+        else:
+            return func.HttpResponse(
+                "Nie podano wszystkich wymaganych danych",
+                status_code=400
             )
     
     except Exception as ex:
