@@ -1,4 +1,4 @@
-import re
+from re import split
 from shared_code.helpers import safe_list_get
 
 def convertClanoviToUser(clanovi):
@@ -10,7 +10,7 @@ def convertClanoviToUser(clanovi):
     clanovi['phone'] = clanovi.pop('TELEFON', None)
     street = clanovi.pop('ULICA', None)
     if street:
-        street = re.split(r'(\d+.+)',street, 1)
+        street = split(r'(\d+.+)',street, 1)
     clanovi['street_name'] = safe_list_get(street, 0, None)
     clanovi['house_nr'] = safe_list_get(street, 1, None)
     clanovi['postal_code'] = clanovi.pop('ZIP', None)

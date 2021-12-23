@@ -6,6 +6,7 @@ from shared_code import database
 from shared_code.helpers import safe_list_get, get_key, get_url
 
 import azure.functions as func
+import Function1
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -16,12 +17,13 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     if identificator_nr:
         try:
-            url = get_url() + 'Function1'
             params = dict(
                 code=get_key(),
                 identificator_nr=identificator_nr
             )
-            resp = requests.get(url=url, params=params).json()
+            fun1_req = func.HttpRequest('get', '', params=params, body='')
+            resp = json.loads(Function1.main(fun1_req).get_body())
+            
 
             cur = database.connectPostgres()
             cur.execute(f'SELECT * FROM public."User" WHERE identificator_nr = \'{identificator_nr}\' AND is_active')

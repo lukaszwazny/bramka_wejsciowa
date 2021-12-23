@@ -7,6 +7,7 @@ from shared_code import database
 from shared_code.helpers import safe_list_get, get_url, get_key
 
 import azure.functions as func
+import Function5
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -21,13 +22,13 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             date = datetime.now().astimezone().date()
             hour = datetime.now().astimezone().timetz()
 
-            url = get_url() + 'Function5?code=' + get_key()
             data = dict(
                 identificator_nr=identificator_nr,
                 date=date.strftime('%Y-%m-%d'),
                 hour=hour.strftime('%H:%M:%S')
             )
-            resp = requests.request("PATCH", url, headers={'Content-Type': 'application/json'}, data=json.dumps(data, ensure_ascii=False))
+            fun5_req = func.HttpRequest('patch', '', params={}, body=json.dumps(data, ensure_ascii=False))
+            resp = Function5.main(fun5_req)
 
             cur = database.connectPostgres()
             query = f"INSERT INTO public.\"Entrance\"(datetime, mode, identificator_nr) VALUES ('{datetime.combine(date, hour).strftime('%Y-%m-%d %H:%M:%S %z')}', 'WYJŚCIE', '{identificator_nr}')"

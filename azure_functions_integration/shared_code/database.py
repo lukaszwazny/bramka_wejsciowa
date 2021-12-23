@@ -1,41 +1,41 @@
-import logging
-import os
-import fdb
-import psycopg2
+from logging import info
+from os import environ
+from fdb import connect as fdbConnect
+from psycopg2 import connect as postgresConnect
 
 from shared_code.helpers import safe_list_get
 
 def connect():
-    logging.info('Getting env variables')
-    host = os.environ['host']
-    database = os.environ['database']
-    user = os.environ['user']
-    password = os.environ['password']
-    logging.info('Got env variables')
+    info('Getting env variables')
+    host = environ['host']
+    database = environ['database']
+    user = environ['user']
+    password = environ['password']
+    info('Got env variables')
 
-    logging.info('Connecting to database')
-    con = fdb.connect(
+    info('Connecting to database')
+    con = fdbConnect(
         host=host, database=database,
         user=user, password=password, charset='UTF8'
     )
-    logging.info('Connected to database succesfully')
+    info('Connected to database succesfully')
 
     return con.cursor()
 
 def connectPostgres():
-    logging.info('Getting env variables')
-    host = os.environ['hostPostgres']
-    database = os.environ['databasePostgres']
-    user = os.environ['userPostgres']
-    password = os.environ['passwordPostgres']
+    info('Getting env variables')
+    host = environ['hostPostgres']
+    database = environ['databasePostgres']
+    user = environ['userPostgres']
+    password = environ['passwordPostgres']
     sslmode = 'require'
-    logging.info('Got env variables')
+    info('Got env variables')
 
     conn_string = f'host={host} user={user} dbname={database} password={password} sslmode={sslmode}'
 
-    logging.info('Connecting to database')
-    con = psycopg2.connect(conn_string)
-    logging.info('Connected to database succesfully')
+    info('Connecting to database')
+    con = postgresConnect(conn_string)
+    info('Connected to database succesfully')
 
     return con.cursor()
 

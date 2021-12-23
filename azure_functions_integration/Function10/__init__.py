@@ -9,6 +9,7 @@ from shared_code import database
 from shared_code.helpers import safe_list_get, get_key, get_url
 
 import azure.functions as func
+import Function2
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -30,23 +31,23 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
             if role == 'KLIENT':
                 date = datetime.now().astimezone().date()
-                url = get_url() + 'Function2'
                 params = dict(
                     code=get_key(),
                     identificator_nr=identificator_nr,
                     date=date
                 )
-                resp = requests.get(url=url, params=params)
+                fun2_req = func.HttpRequest('get', '', params=params, body='')
+                resp = Function2.main(fun2_req)
                 if resp.status_code != 200:
                     #to do wyślij rozkaz nieotwarcia
                     if resp.status_code == 400:
-                        response['reason_of_disallowance'] = resp.json().get('message', 'Nieznany powód :(')
+                        response['reason_of_disallowance'] = json.loads(resp.get_body()).get('message', 'Nieznany powód :(')
                     else:
                         response['reason_of_disallowance'] = 'Nieznany powód :('
                 else:
                     response['package'] = dict(
-                        package_ID= resp.json().get('package_ID'), 
-                        package_name= resp.json().get('package_name')
+                        package_ID= json.loads(resp.get_body()).get('package_ID'), 
+                        package_name= json.loads(resp.get_body()).get('package_name')
                     )
             elif role == 'TRENER' or role == 'PRACOWNIK RECEPCJI' or role ==  'ADMINISTRATOR':
                 response = response

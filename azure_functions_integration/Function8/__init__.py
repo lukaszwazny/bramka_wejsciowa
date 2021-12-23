@@ -9,6 +9,7 @@ from shared_code import database
 from shared_code.helpers import safe_list_get, get_key, get_url
 
 import azure.functions as func
+import Function7
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -71,11 +72,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         )
 
 def funtion7(identicator_nr):
-    url = get_url() + 'Function7'
     params = dict(
         code=get_key(),
         identificator_nr=identificator_nr
     )
-    resp = requests.get(url=url, params=params).json()
-    resp = json.dumps(resp, default=str, ensure_ascii=False)
+    fun7_req = func.HttpRequest('get', '', params=params, body='')
+    resp = Function7.main(fun7_req).get_body()
     return resp
