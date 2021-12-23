@@ -7,6 +7,7 @@ import calendar
 
 from shared_code import database
 from shared_code.helpers import safe_list_get, get_key, get_url
+from shared_code.getters import get_user
 
 import azure.functions as func
 import Function7
@@ -35,20 +36,14 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 justification=None
             )
         else:
-            params = dict(
-                code=get_key(),
-                identificator_nr=entrance.get('identificator_nr')
-            )
-            fun7_req = func.HttpRequest('get', '', params=params, body='')
-            resp = Function7.main(fun7_req)
-            if resp.status_code == 200:
-                resp = json.loads(resp.get_body())
-                if not resp.get('name'): resp['name'] = ' '
-                if not resp.get('surname'): resp['surname'] = ' '
-            else:
+            resp = get_user(entrance.get('identificator_nr'))
+            if type(resp) is Exception():
                 resp = dict(
                     name=' ',surname=' '
                 )
+            else:
+                if not resp.get('name'): resp['name'] = ' '
+                if not resp.get('surname'): resp['surname'] = ' '
             entrance = dict(
                 id=entrance.get('entrance_id'),
                 date=entrance.get('datetime').date(),
