@@ -7,7 +7,10 @@ ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
 
 # Install fbClient
 RUN apt-get update && \
-    apt-get install -y libfbclient2
+    apt-get install -y libfbclient2 && \
+    apt-get install -y locales locales-all
+
+#RUN export LC_ALL=C
 
 COPY requirements.txt /
 RUN pip install -r /requirements.txt

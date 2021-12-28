@@ -1,0 +1,490 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "azurefunctionsintegration",
+    "version": "1.0",
+    "description": "Import from \"azurefunctionsintegration\" Function App"
+  },
+  "host": "azurefunctionsintegration-apim.azure-api.net",
+  "basePath": "/azurefunctionsintegration",
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "subscription-key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "paths": {
+    "/Function15": {
+      "get": {
+        "operationId": "get-function15",
+        "summary": "Function15",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function14": {
+      "get": {
+        "operationId": "get-function14",
+        "summary": "Function14",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function18": {
+      "delete": {
+        "operationId": "delete-function18",
+        "summary": "Function18",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function17": {
+      "post": {
+        "operationId": "post-function17",
+        "summary": "Function17",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function19": {
+      "patch": {
+        "operationId": "patch-function19",
+        "summary": "Function19",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function12": {
+      "post": {
+        "operationId": "post-function12",
+        "summary": "Function12",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function20": {
+      "delete": {
+        "operationId": "delete-function20",
+        "summary": "Function20",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function13": {
+      "post": {
+        "operationId": "post-function13",
+        "summary": "Function13",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function16": {
+      "get": {
+        "operationId": "get-function16",
+        "summary": "Function16",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function8": {
+      "get": {
+        "operationId": "get-function8",
+        "summary": "Function8",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function2": {
+      "get": {
+        "operationId": "get-function2",
+        "summary": "Function2",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function7": {
+      "get": {
+        "operationId": "get-function7",
+        "summary": "Function7",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function30": {
+      "delete": {
+        "operationId": "delete-function30",
+        "summary": "Function30",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function6": {
+      "get": {
+        "operationId": "get-function6",
+        "summary": "Function6",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function10": {
+      "get": {
+        "operationId": "get-function10",
+        "summary": "Function10",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function1": {
+      "get": {
+        "operationId": "get-function1",
+        "summary": "Function1",
+        "parameters": [
+          {
+            "name": "identificator_nr",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Good result"
+            },
+            "examples": {
+              "application/json": {
+                "ID": 0,
+                "name": "string",
+                "surname": "string",
+                "identificator_nr": "string",
+                "birthdate": "string",
+                "sex": "string",
+                "phone": "string",
+                "street_name": "string",
+                "house_nr": "string",
+                "postal_code": "string",
+                "city": "string",
+                "e_mail": "string",
+                "additional_info": "string",
+                "PESEL": {},
+                "is_active": true,
+                "roles": [
+                  "string"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Function3": {
+      "get": {
+        "operationId": "get-function3",
+        "summary": "Function3",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function29": {
+      "patch": {
+        "operationId": "patch-function29",
+        "summary": "Function29",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function11": {
+      "get": {
+        "operationId": "get-function11",
+        "summary": "Function11",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function5": {
+      "patch": {
+        "operationId": "patch-function5",
+        "summary": "Function5",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function28": {
+      "get": {
+        "operationId": "get-function28",
+        "summary": "Function28",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function27": {
+      "get": {
+        "operationId": "get-function27",
+        "summary": "Function27",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function32": {
+      "post": {
+        "operationId": "post-function32",
+        "summary": "Function32",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function4": {
+      "post": {
+        "operationId": "post-function4",
+        "summary": "Function4",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function9": {
+      "post": {
+        "operationId": "post-function9",
+        "summary": "Function9",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function33": {
+      "post": {
+        "operationId": "post-function33",
+        "summary": "Function33",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function31": {
+      "delete": {
+        "operationId": "delete-function31",
+        "summary": "Function31",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function26": {
+      "put": {
+        "operationId": "put-function26",
+        "summary": "Function26",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function25": {
+      "get": {
+        "operationId": "get-function25",
+        "summary": "Function25",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function22": {
+      "delete": {
+        "operationId": "delete-function22",
+        "summary": "Function22",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function24": {
+      "get": {
+        "operationId": "get-function24",
+        "summary": "Function24",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function21": {
+      "post": {
+        "operationId": "post-function21",
+        "summary": "Function21",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    },
+    "/Function23": {
+      "post": {
+        "operationId": "post-function23",
+        "summary": "Function23",
+        "responses": {
+          "200": {
+            "description": null
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Good result": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "identificator_nr": {
+          "type": "string"
+        },
+        "birthdate": {
+          "type": "string"
+        },
+        "sex": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "street_name": {
+          "type": "string"
+        },
+        "house_nr": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "e_mail": {
+          "type": "string"
+        },
+        "additional_info": {
+          "type": "string"
+        },
+        "PESEL": {},
+        "is_active": {
+          "type": "boolean"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "tags": []
+}
