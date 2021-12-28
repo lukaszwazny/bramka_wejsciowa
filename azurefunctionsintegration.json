@@ -88,8 +88,8 @@
                   "date": "string",
                   "hour": "string",
                   "name": "string",
-                  "lesson_type": {},
-                  "role": {},
+                  "lesson_type": "string",
+                  "role": "string",
                   "mode": "string"
                 }
               ]
@@ -116,7 +116,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -139,7 +139,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -162,7 +162,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -186,7 +186,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -209,7 +209,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -232,7 +232,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -280,7 +280,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -396,7 +396,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -459,7 +459,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -499,7 +499,7 @@
                 "city": "string",
                 "e_mail": "string",
                 "additional_info": "string",
-                "PESEL": {},
+                "PESEL": "string",
                 "is_active": true,
                 "roles": [
                   "string"
@@ -533,7 +533,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -556,7 +556,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -609,7 +609,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -627,7 +627,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -675,7 +675,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -736,7 +736,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -759,7 +759,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -782,7 +782,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -805,7 +805,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -855,7 +855,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -910,7 +910,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -933,7 +933,7 @@
         ],
         "responses": {
           "200": {
-            "description": null
+            "description": ""
           }
         }
       }
@@ -982,7 +982,9 @@
         "additional_info": {
           "type": "string"
         },
-        "PESEL": {},
+        "PESEL": {
+          "type": "string"
+        },
         "is_active": {
           "type": "boolean"
         },
@@ -1107,8 +1109,12 @@
           "name": {
             "type": "string"
           },
-          "lesson_type": {},
-          "role": {},
+          "lesson_type": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
           "mode": {
             "type": "string"
           }
