@@ -41,6 +41,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                     query += f" surname=\'{surname}\',"
                 if identificator_nr:
                     query += f" identificator_nr=\'{identificator_nr}\',"
+                if birthdate:
+                    query += f" birthdate=\'{birthdate}\',"
                 if sex:
                     query += f" sex=\'{sex}\',"
                 if phone:

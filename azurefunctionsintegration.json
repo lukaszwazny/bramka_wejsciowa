@@ -35,9 +35,35 @@
       "get": {
         "operationId": "get-function15",
         "summary": "Function15",
+        "parameters": [
+          {
+            "name": "entrance_id",
+            "in": "query",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
-            "description": null
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Func15-resp"
+            },
+            "examples": {
+              "application/json": {
+                "id": 0,
+                "date": "string",
+                "hour": "string",
+                "name": "string",
+                "lesson_type": "string",
+                "role": "string",
+                "mode": "string",
+                "package": "string",
+                "justification": "string"
+              }
+            }
           }
         }
       }
@@ -46,9 +72,28 @@
       "get": {
         "operationId": "get-function14",
         "summary": "Function14",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
-            "description": null
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Func14-resp"
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": 0,
+                  "date": "string",
+                  "hour": "string",
+                  "name": "string",
+                  "lesson_type": {},
+                  "role": {},
+                  "mode": "string"
+                }
+              ]
+            }
           }
         }
       }
@@ -57,6 +102,18 @@
       "delete": {
         "operationId": "delete-function18",
         "summary": "Function18",
+        "parameters": [
+          {
+            "name": "func18-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Func18-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -68,6 +125,18 @@
       "post": {
         "operationId": "post-function17",
         "summary": "Function17",
+        "parameters": [
+          {
+            "name": "func17-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Func17-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -79,6 +148,18 @@
       "patch": {
         "operationId": "patch-function19",
         "summary": "Function19",
+        "parameters": [
+          {
+            "name": "func19-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Func19-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -90,6 +171,19 @@
       "post": {
         "operationId": "post-function12",
         "summary": "Function12",
+        "parameters": [
+          {
+            "name": "function12-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Function12-body"
+            },
+            "description": "{\n    \"identificator_nr\": \"10\",\n    \"role\": \"TRENER\",\n    \"package\": {\n        \"package_id\": 6479,\n        \"package_name\": \"Murzyn\"\n    },\n    \"lesson_type_id\": 2,\n    \"justification\": \"On musi wejść :(\"\n}"
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -101,6 +195,18 @@
       "delete": {
         "operationId": "delete-function20",
         "summary": "Function20",
+        "parameters": [
+          {
+            "name": "func20-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Func20-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -112,6 +218,18 @@
       "post": {
         "operationId": "post-function13",
         "summary": "Function13",
+        "parameters": [
+          {
+            "name": "function13-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Function13-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -123,9 +241,28 @@
       "get": {
         "operationId": "get-function16",
         "summary": "Function16",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
-            "description": null
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Func16-resp"
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "identificator_nr": "string",
+                  "name": "string",
+                  "surname": "string",
+                  "roles": [
+                    "string"
+                  ],
+                  "user_id": 0
+                }
+              ]
+            }
           }
         }
       }
@@ -134,6 +271,13 @@
       "get": {
         "operationId": "get-function8",
         "summary": "Function8",
+        "parameters": [
+          {
+            "name": "identificator_nr",
+            "in": "query",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": null
@@ -145,9 +289,46 @@
       "get": {
         "operationId": "get-function2",
         "summary": "Function2",
+        "parameters": [
+          {
+            "name": "identificator_nr",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
-            "description": null
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Func2-resp200"
+            },
+            "examples": {
+              "application/json": {
+                "entrance_allowed": true,
+                "package_ID": 0,
+                "package_name": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Func2-resp400"
+            },
+            "examples": {
+              "application/json": {
+                "entrance_allowed": true,
+                "message": "string"
+              }
+            }
           }
         }
       }
@@ -156,9 +337,43 @@
       "get": {
         "operationId": "get-function7",
         "summary": "Function7",
+        "parameters": [
+          {
+            "name": "identificator_nr",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
-            "description": null
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Func7-resp"
+            },
+            "examples": {
+              "application/json": {
+                "ID": 0,
+                "name": "string",
+                "surname": "string",
+                "identificator_nr": "string",
+                "birthdate": "string",
+                "sex": "string",
+                "phone": "string",
+                "street_name": "string",
+                "house_nr": "string",
+                "postal_code": "string",
+                "city": "string",
+                "e_mail": "string",
+                "additional_info": "string",
+                "PESEL": "string",
+                "is_active": true,
+                "roles": [],
+                "user_id": 0
+              }
+            }
           }
         }
       }
@@ -167,6 +382,18 @@
       "delete": {
         "operationId": "delete-function30",
         "summary": "Function30",
+        "parameters": [
+          {
+            "name": "func30-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Func30-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -178,9 +405,38 @@
       "get": {
         "operationId": "get-function6",
         "summary": "Function6",
+        "parameters": [
+          {
+            "name": "identificator_nrs",
+            "in": "query",
+            "type": "string",
+            "default": "'10','1','0011243110'",
+            "enum": [
+              "'10','1','0011243110'"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
-            "description": null
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Func6-resp"
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "identificator_nr": "string",
+                  "name": "string",
+                  "surname": "string",
+                  "roles": [
+                    "string"
+                  ]
+                }
+              ]
+            }
           }
         }
       }
@@ -189,6 +445,18 @@
       "get": {
         "operationId": "get-function10",
         "summary": "Function10",
+        "parameters": [
+          {
+            "name": "identificator_nr",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "role",
+            "in": "query",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": null
@@ -246,6 +514,23 @@
       "get": {
         "operationId": "get-function3",
         "summary": "Function3",
+        "parameters": [
+          {
+            "name": "identificator_nr",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "lesson",
+            "in": "query",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": null
@@ -257,6 +542,18 @@
       "patch": {
         "operationId": "patch-function29",
         "summary": "Function29",
+        "parameters": [
+          {
+            "name": "func29-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Func29-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -268,9 +565,28 @@
       "get": {
         "operationId": "get-function11",
         "summary": "Function11",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
-            "description": null
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/lessons"
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "lesson_id": 0,
+                  "weekday": "string",
+                  "start_time": "string",
+                  "end_time": "string",
+                  "is_active": true,
+                  "lesson_type_id": 0,
+                  "name": "string"
+                }
+              ]
+            }
           }
         }
       }
@@ -279,6 +595,18 @@
       "patch": {
         "operationId": "patch-function5",
         "summary": "Function5",
+        "parameters": [
+          {
+            "name": "func5-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Func5-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -290,6 +618,13 @@
       "get": {
         "operationId": "get-function28",
         "summary": "Function28",
+        "parameters": [
+          {
+            "name": "lesson_type_id",
+            "in": "query",
+            "type": "integer"
+          }
+        ],
         "responses": {
           "200": {
             "description": null
@@ -301,9 +636,23 @@
       "get": {
         "operationId": "get-function27",
         "summary": "Function27",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
-            "description": null
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Func27-resp"
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "lesson_type_id": 0,
+                  "name": "string"
+                }
+              ]
+            }
           }
         }
       }
@@ -312,6 +661,18 @@
       "post": {
         "operationId": "post-function32",
         "summary": "Function32",
+        "parameters": [
+          {
+            "name": "func32-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Func32-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -323,9 +684,36 @@
       "post": {
         "operationId": "post-function4",
         "summary": "Function4",
+        "parameters": [
+          {
+            "name": "func4-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Func4-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
-            "description": null
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Func4-resp"
+            },
+            "examples": {
+              "application/json": {
+                "identificator_nr": "string",
+                "date": "string",
+                "hour": "string",
+                "lesson": 0,
+                "package_id": 0
+              }
+            }
           }
         }
       }
@@ -334,6 +722,18 @@
       "post": {
         "operationId": "post-function9",
         "summary": "Function9",
+        "parameters": [
+          {
+            "name": "func9-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Func9-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -345,6 +745,18 @@
       "post": {
         "operationId": "post-function33",
         "summary": "Function33",
+        "parameters": [
+          {
+            "name": "func33-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Func33-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -356,6 +768,18 @@
       "delete": {
         "operationId": "delete-function31",
         "summary": "Function31",
+        "parameters": [
+          {
+            "name": "func31-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Func31-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -367,6 +791,18 @@
       "put": {
         "operationId": "put-function26",
         "summary": "Function26",
+        "parameters": [
+          {
+            "name": "func26-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Func26-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -378,9 +814,25 @@
       "get": {
         "operationId": "get-function25",
         "summary": "Function25",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
-            "description": null
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Func25-resp"
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "paramater_id": 0,
+                  "name": "string",
+                  "value": 0,
+                  "unit": "string"
+                }
+              ]
+            }
           }
         }
       }
@@ -389,6 +841,18 @@
       "delete": {
         "operationId": "delete-function22",
         "summary": "Function22",
+        "parameters": [
+          {
+            "name": "func22-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Func22-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -400,9 +864,30 @@
       "get": {
         "operationId": "get-function24",
         "summary": "Function24",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
-            "description": null
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Func24-resp"
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "justification_id": 0,
+                  "name": "string"
+                }
+              ]
+            }
           }
         }
       }
@@ -411,6 +896,18 @@
       "post": {
         "operationId": "post-function21",
         "summary": "Function21",
+        "parameters": [
+          {
+            "name": "func20-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Func20-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -422,6 +919,18 @@
       "post": {
         "operationId": "post-function23",
         "summary": "Function23",
+        "parameters": [
+          {
+            "name": "func23-body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Func23-body"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": null
@@ -483,6 +992,734 @@
             "type": "string"
           }
         }
+      }
+    },
+    "lessons": {
+      "type": "array",
+      "items": {
+        "required": [
+          "lesson_id",
+          "weekday",
+          "start_time",
+          "end_time",
+          "is_active",
+          "lesson_type_id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "lesson_id": {
+            "type": "integer"
+          },
+          "weekday": {
+            "type": "string"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "end_time": {
+            "type": "string"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "lesson_type_id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Function12-body": {
+      "type": "object",
+      "properties": {
+        "identificator_nr": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "package": {
+          "type": "object",
+          "properties": {
+            "package_id": {
+              "type": "integer"
+            },
+            "package_name": {
+              "type": "string"
+            }
+          }
+        },
+        "lesson_type_id": {
+          "type": "integer"
+        },
+        "justification": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "identificator_nr": "string",
+        "role": "string",
+        "package": {
+          "package_id": 0,
+          "package_name": "string"
+        },
+        "lesson_type_id": 0,
+        "justification": "string"
+      }
+    },
+    "Function13-body": {
+      "type": "object",
+      "properties": {
+        "justification": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "justification": "string"
+      }
+    },
+    "Func14-resp": {
+      "type": "array",
+      "items": {
+        "required": [
+          "id",
+          "date",
+          "hour",
+          "name",
+          "lesson_type",
+          "role",
+          "mode"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "date": {
+            "type": "string"
+          },
+          "hour": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "lesson_type": {},
+          "role": {},
+          "mode": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Func15-resp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "date": {
+          "type": "string"
+        },
+        "hour": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "lesson_type": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "mode": {
+          "type": "string"
+        },
+        "package": {
+          "type": "string"
+        },
+        "justification": {
+          "type": "string"
+        }
+      }
+    },
+    "Func16-resp": {
+      "type": "array",
+      "items": {
+        "required": [
+          "identificator_nr",
+          "name",
+          "surname",
+          "roles"
+        ],
+        "type": "object",
+        "properties": {
+          "identificator_nr": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "user_id": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "Func17-body": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "identificator_nr": {
+          "type": "string"
+        },
+        "birthdate": {
+          "type": "string"
+        },
+        "sex": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "PESEL": {
+          "type": "string"
+        },
+        "street_name": {
+          "type": "string"
+        },
+        "house_nr": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "e_mail": {
+          "type": "string"
+        },
+        "additional_info": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "name": "string",
+        "role": "string",
+        "identificator_nr": "string",
+        "birthdate": "string",
+        "sex": "string",
+        "phone": "string",
+        "PESEL": "string",
+        "street_name": "string",
+        "house_nr": "string",
+        "postal_code": "string",
+        "city": "string",
+        "e_mail": "string",
+        "additional_info": "string"
+      }
+    },
+    "Func18-body": {
+      "type": "object",
+      "properties": {
+        "identificator_nr": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "identificator_nr": "string"
+      }
+    },
+    "Func19-body": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "identificator_nr": {
+          "type": "string"
+        },
+        "birthdate": {
+          "type": "string"
+        },
+        "sex": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "PESEL": {
+          "type": "string"
+        },
+        "street_name": {
+          "type": "string"
+        },
+        "house_nr": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "e_mail": {
+          "type": "string"
+        },
+        "additional_info": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "user_id": "string",
+        "name": "string",
+        "identificator_nr": "string",
+        "birthdate": "string",
+        "sex": "string",
+        "phone": "string",
+        "PESEL": "string",
+        "street_name": "string",
+        "house_nr": "string",
+        "postal_code": "string",
+        "city": "string",
+        "e_mail": "string",
+        "additional_info": "string"
+      }
+    },
+    "Func2-resp200": {
+      "type": "object",
+      "properties": {
+        "entrance_allowed": {
+          "type": "boolean"
+        },
+        "package_ID": {
+          "type": "integer"
+        },
+        "package_name": {
+          "type": "string"
+        }
+      }
+    },
+    "Func2-resp400": {
+      "type": "object",
+      "properties": {
+        "entrance_allowed": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Func20-body": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "role_name": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "user_id": "string",
+        "role_name": "string"
+      }
+    },
+    "Func22-body": {
+      "type": "object",
+      "properties": {
+        "justification_id": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "justification_id": "string"
+      }
+    },
+    "Func23-body": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "user_id": "string",
+        "name": "string",
+        "from": "string",
+        "to": "string",
+        "description": "string"
+      }
+    },
+    "Func24-resp": {
+      "type": "array",
+      "items": {
+        "required": [
+          "justification_id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "justification_id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Func25-resp": {
+      "type": "array",
+      "items": {
+        "required": [
+          "paramater_id",
+          "name",
+          "value",
+          "unit"
+        ],
+        "type": "object",
+        "properties": {
+          "paramater_id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "integer"
+          },
+          "unit": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Func26-body": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "name": "string",
+        "value": "string"
+      }
+    },
+    "Func27-resp": {
+      "type": "array",
+      "items": {
+        "required": [
+          "lesson_type_id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "lesson_type_id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Func28-resp": {
+      "type": "array",
+      "items": {
+        "required": [
+          "lesson_id",
+          "weekday",
+          "start_time",
+          "end_time"
+        ],
+        "type": "object",
+        "properties": {
+          "lesson_id": {
+            "type": "integer"
+          },
+          "weekday": {
+            "type": "string"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "end_time": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Func29-body": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "lesson_type_id": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "name": "string",
+        "lesson_type_id": 0
+      }
+    },
+    "Func30-body": {
+      "type": "object",
+      "properties": {
+        "lesson_type_id": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "lesson_type_id": 0
+      }
+    },
+    "Func31-body": {
+      "type": "object",
+      "properties": {
+        "lesson_id": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "lesson_id": 0
+      }
+    },
+    "Func32-body": {
+      "type": "object",
+      "properties": {
+        "lesson_type_id": {
+          "type": "integer"
+        },
+        "weekday": {
+          "type": "string"
+        },
+        "start_time": {
+          "type": "string"
+        },
+        "end_time": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "lesson_type_id": 0,
+        "weekday": "string",
+        "start_time": "string",
+        "end_time": "string"
+      }
+    },
+    "Func33-body": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "name": "string"
+      }
+    },
+    "Func4-body": {
+      "type": "object",
+      "properties": {
+        "identificator_nr": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "hour": {
+          "type": "string"
+        },
+        "package_id": {
+          "type": "integer"
+        },
+        "lesson": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "identificator_nr": "string",
+        "date": "string",
+        "hour": "string",
+        "package_id": 0,
+        "lesson": 0
+      }
+    },
+    "Func4-resp": {
+      "type": "object",
+      "properties": {
+        "identificator_nr": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "hour": {
+          "type": "string"
+        },
+        "lesson": {
+          "type": "integer"
+        },
+        "package_id": {
+          "type": "integer"
+        }
+      }
+    },
+    "Func5-body": {
+      "type": "object",
+      "properties": {
+        "identificator_nr": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "hour": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "identificator_nr": "string",
+        "date": "string",
+        "hour": "string"
+      }
+    },
+    "Func6-resp": {
+      "type": "array",
+      "items": {
+        "required": [
+          "identificator_nr",
+          "name",
+          "surname",
+          "roles"
+        ],
+        "type": "object",
+        "properties": {
+          "identificator_nr": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "Func7-resp": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "identificator_nr": {
+          "type": "string"
+        },
+        "birthdate": {
+          "type": "string"
+        },
+        "sex": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "street_name": {
+          "type": "string"
+        },
+        "house_nr": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "e_mail": {
+          "type": "string"
+        },
+        "additional_info": {
+          "type": "string"
+        },
+        "PESEL": {
+          "type": "string"
+        },
+        "is_active": {
+          "type": "boolean"
+        },
+        "roles": {
+          "type": "array"
+        },
+        "user_id": {
+          "type": "integer"
+        }
+      }
+    },
+    "Func9-body": {
+      "type": "object",
+      "properties": {
+        "identificator_nr": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "identificator_nr": "string"
       }
     }
   },
