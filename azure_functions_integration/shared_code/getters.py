@@ -17,6 +17,34 @@ def get_user(identificator_nr):
         resp = json.loads(Function1.main(fun1_req).get_body())
 
         cur = database.connectPostgres()
+        cur.execute(f'SELECT * FROM public."User" WHERE identificator_nr = \'{identificator_nr}\'')
+        names = [item[0] for item in cur.description]
+        resp_new = cur.fetchone()
+        for i in range(len(names)):
+            if safe_list_get(resp_new, i, None):
+                resp[names[i]] = safe_list_get(resp_new, i, None)
+
+        if resp.get('user_id'):
+            query = f"SELECT * FROM public.\"Role_User\" RIGHT OUTER JOIN public.\"Role\" ON role_id = \"Role_role_id\"  WHERE \"User_user_id\" = {resp['user_id']} AND is_active"
+            resp_new = database.getMany(cur, query)
+            resp_new = [item['role_name'] for item in resp_new]
+            resp['roles'] = resp['roles'] + list(set(resp_new))
+
+        return resp
+    
+    except Exception as ex:
+        return ex
+
+def get_active_user(identificator_nr):
+    try:
+        params = dict(
+            code=get_key(),
+            identificator_nr=identificator_nr
+        )
+        fun1_req = func.HttpRequest('get', '', params=params, body='')
+        resp = json.loads(Function1.main(fun1_req).get_body())
+
+        cur = database.connectPostgres()
         cur.execute(f'SELECT * FROM public."User" WHERE identificator_nr = \'{identificator_nr}\' AND is_active')
         names = [item[0] for item in cur.description]
         resp_new = cur.fetchone()

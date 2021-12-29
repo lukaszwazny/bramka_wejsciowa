@@ -4,7 +4,7 @@ import requests
 
 from shared_code import database
 from shared_code.helpers import safe_list_get, get_key, get_url
-from shared_code.getters import get_user
+from shared_code.getters import get_active_user
 
 import azure.functions as func
 import Function1
@@ -18,7 +18,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     if identificator_nr:
         try:
-            resp = get_user(identificator_nr)
+            resp = get_active_user(identificator_nr)
 
             #to do - rozkaz do apki webowej i urządzenia
             if type(resp) is Exception:
