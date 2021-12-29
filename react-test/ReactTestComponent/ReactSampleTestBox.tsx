@@ -17,6 +17,7 @@ export interface IProps {
 
 export default class ReactSampleTextBox extends React.Component<IProps, IState> {
 
+    selectedRecord: any
 
     constructor(props: Readonly<IProps>){
         super(props);
@@ -30,15 +31,15 @@ export default class ReactSampleTextBox extends React.Component<IProps, IState> 
         this.setState({value: (p.value), Items: (p.Items)});
     }
 
-    handleChange(e:React.ChangeEvent<HTMLInputElement>, e1: React.ChangeEvent<DataTable>){
-        let value = e.currentTarget.value;
-        let Items = e1.currentTarget;
-        // this.setState({value: (value), Items: mockowe_wejscia});
-        // this.props.onChange(value);
+    handleChange(e:string){
+        let value = e;
+        this.setState({value: (value)});
+        this.props.onChange(value, this.state.Items as ComponentFramework.PropertyTypes.DataSet);
     }
 
     private typesDict : {[k: string]: any} = {
-        'DateAndTime.DateAndTime': 'date'
+        'DateAndTime.DateAndTime': 'date',
+        'Decimal': 'numeric'
     }
 
 
@@ -48,7 +49,22 @@ export default class ReactSampleTextBox extends React.Component<IProps, IState> 
         this.state.Items?.sortedRecordIds.forEach( id => {
             let record: {[k: string]: any} = {};
             this.state.Items?.columns.forEach(col => {
-                record[col.alias.toLowerCase()] = this.state.Items?.records[id].getValue(col.alias);
+                let recValue : any = this.state.Items?.records[id].getValue(col.alias)
+                if (recValue instanceof Date) {
+                    let temp : Date = recValue as Date
+                    recValue = temp?.toISOString().slice(0,10)
+                    col.dataType = "DateAndTime.DateAndTime"
+                }
+                else if (/^\d{4}-([0]\d|1[0-2])-([0-2]\d|3[01])$/.test(recValue as string)) {
+                    col.dataType = "DateAndTime.DateAndTime"
+                }
+                else if (!isNaN(recValue) && !isNaN(parseFloat(recValue))) {
+                    col.dataType = "Decimal"
+                }
+                else{
+                    recValue = recValue
+                }
+                record[col.alias.toLowerCase()] = recValue;
                 //data.push(this.state.Items?.records[id].getValue(col.alias));
             });
             data.push(record);
@@ -58,7 +74,8 @@ export default class ReactSampleTextBox extends React.Component<IProps, IState> 
         
         // 
         const dynamicColumns = this.state.Items?.columns.map((col,i) => {
-            return <Column dataType={((col.dataType in this.typesDict) ? this.typesDict[col.dataType] : "text")} key={col.alias.toLowerCase()} sortable field={col.alias.toLowerCase()} header={col.alias} filter/>;
+            if (col.alias != "id")
+                return <Column dataType={((col.dataType in this.typesDict) ? this.typesDict[col.dataType] : "text")} key={col.alias.toLowerCase()} sortable field={col.alias.toLowerCase()} header={col.alias} filter/>;
         });
 
         // const colm = <Column field="data" header="DATA" filter/>
@@ -79,7 +96,11 @@ export default class ReactSampleTextBox extends React.Component<IProps, IState> 
         // selectionMode={"single"} resizableColumns={true} reorderableColumns={true}
         //{dynamicColumns}
         return (
-            <DataTable value={data} selectionMode={"single"} resizableColumns={true} reorderableColumns={true}
+            <DataTable value={data} 
+            selectionMode={"single"} 
+            onSelectionChange={e => {this.handleChange(e.value?.id)}} 
+            resizableColumns={true} 
+            reorderableColumns={true}
             paginator rows={10}> 
                 {dynamicColumns}
             </DataTable>

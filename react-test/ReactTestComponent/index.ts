@@ -38,7 +38,7 @@ export class ReactTestComponent implements ComponentFramework.StandardControl<II
 		// Add control initialization code
 		this._notifyOutputChanged = notifyOutputChanged;
 		this._container = document.createElement("div");
-		this.props.value = context.parameters.sampleProperty.raw || "";
+		this.props.value = context.parameters.selectedId.raw || "";
 		this.props.Items = context.parameters.Items;
 
 		container.appendChild(this._container);
@@ -58,7 +58,7 @@ export class ReactTestComponent implements ComponentFramework.StandardControl<II
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
 		// Add code to update control view
-		this._value = context.parameters.sampleProperty.raw?.valueOf();
+		this._value = context.parameters.selectedId.raw?.valueOf();
 		this._Items = context.parameters.Items;
 		this.props.value = this._value;
 		this.props.Items = this._Items;
@@ -76,7 +76,7 @@ export class ReactTestComponent implements ComponentFramework.StandardControl<II
 	public getOutputs(): IOutputs
 	{
 		return {
-			sampleProperty : this._value
+			selectedId : this._value
 		};
 	}
 
