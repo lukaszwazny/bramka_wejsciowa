@@ -20,7 +20,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         try:
             resp = get_active_user(identificator_nr)
 
-            #to do - rozkaz do apki webowej i urządzenia
             if type(resp) is Exception:
                 raise resp
             else:
