@@ -39,6 +39,7 @@ export class ReactTestComponent implements ComponentFramework.StandardControl<II
 		this._notifyOutputChanged = notifyOutputChanged;
 		this._container = document.createElement("div");
 		this.props.value = context.parameters.selectedId.raw || "";
+		context.parameters.Items.paging.setPageSize(5000);
 		this.props.Items = context.parameters.Items;
 
 		container.appendChild(this._container);
