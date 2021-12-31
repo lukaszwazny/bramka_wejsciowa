@@ -21,7 +21,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         lesson_type_id = req_body.get('lesson_type_id')
         justification = req_body.get('justification')
 
-        #to do rozkaz otwarcia do urządzenia
+        if send_opening_command().status_code != 200:
+            raise Exception()
 
         date = datetime.now().astimezone().date()
         hour = datetime.now().astimezone().timetz()

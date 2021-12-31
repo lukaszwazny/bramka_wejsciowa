@@ -3,7 +3,7 @@ import json
 import requests
 
 from shared_code import database
-from shared_code.helpers import safe_list_get, get_key, get_url
+from shared_code.helpers import safe_list_get, get_key, get_url, send_user_to_app, send_not_opening_command
 from shared_code.getters import get_active_user
 
 import azure.functions as func
@@ -20,7 +20,13 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         try:
             resp = get_active_user(identificator_nr)
 
-            #to do - rozkaz do apki webowej i urządzenia
+            if send_user_to_app(resp).status_code != 200:
+                raise Exception()
+
+            if (resp.get('user_id') == None) and (resp.get('ID') == None):
+                if send_not_opening_command().status_code != 200:
+                    raise Exception()
+
             if type(resp) is Exception:
                 raise resp
             else:

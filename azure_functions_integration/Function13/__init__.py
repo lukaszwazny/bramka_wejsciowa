@@ -16,7 +16,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         req_body = req.get_json()
         justification = req_body.get('justification')
         if justification:
-            #to do rozkaz otwarcia do urządzenia
+            if send_opening_command().status_code != 200:
+                raise Exception()
 
             date = datetime.now().astimezone().date()
             hour = datetime.now().astimezone().timetz()

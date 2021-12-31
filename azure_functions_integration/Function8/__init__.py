@@ -6,7 +6,7 @@ import locale
 import calendar
 
 from shared_code import database
-from shared_code.helpers import safe_list_get, get_key, get_url
+from shared_code.helpers import safe_list_get, get_key, get_url, send_entrance_to_app
 
 import azure.functions as func
 import Function7
@@ -42,12 +42,14 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                     query = f"SELECT * FROM public.\"Lesson\" WHERE lesson_type_id={last_entr.get('lesson_type_id')} AND weekday=\'{weekday_name_now}\' AND is_active"
                     lesson = database.getOne(cur, query)
                     if lesson and lesson.get('start_time') < datetime.now().astimezone().timetz() < lesson.get('end_time'):
-                        #to do - wyślij wejścia do apki
+                        if send_entrance_to_app(last_entrance).status_code != 200:
+                            raise Exception()
                         resp = 'siema'
                     else:
                         resp = funtion7(identicator_nr)
                 else:
-                    #to do - wyślij wejścia do apki
+                    if send_entrance_to_app(last_entrance).status_code != 200:
+                            raise Exception()
                     resp = 'siema'
             else:
                 resp = funtion7(identificator_nr)

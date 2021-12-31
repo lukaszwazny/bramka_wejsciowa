@@ -6,10 +6,13 @@ import locale
 import calendar
 
 from shared_code import database
-from shared_code.helpers import safe_list_get, get_key, get_url
+from shared_code.helpers import safe_list_get, get_key, get_url, send_not_opening_command
 
 import azure.functions as func
 import Function2
+
+import requests
+import os
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -39,7 +42,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 fun2_req = func.HttpRequest('get', '', params=params, body='')
                 resp = Function2.main(fun2_req)
                 if resp.status_code != 200:
-                    #to do wyślij rozkaz nieotwarcia
+
+                    if send_not_opening_command().status_code != 200:
+                        raise Exception()
+
                     if resp.status_code == 400:
                         response['reason_of_disallowance'] = json.loads(resp.get_body()).get('message', 'Nieznany powód :(')
                     else:
@@ -62,7 +68,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                         description = justification.get('description')
                     )
                 else:
-                    #to do wyślij rozkaz nieotwarcia
+                    if send_not_opening_command().status_code != 200:
+                        raise Exception()
                     response['reason_of_disallowance'] = 'Brak uprawnień do wejścia'
             else:
                 response['reason_of_disallowance'] = 'Nieznany powód :('
