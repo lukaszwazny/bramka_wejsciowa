@@ -24,7 +24,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         logging.info('Got outer users')
 
         cur = database.connectPostgres()
-        query = f'SELECT u.user_id, u.identificator_nr, u.name, u.surname, ARRAY_AGG(DISTINCT r.role_name) AS roles FROM public."User" u LEFT OUTER JOIN public.\"Role_User\" ru ON ru.\"User_user_id\"=u.user_id JOIN public.\"Role\" r ON r.role_id=ru.\"Role_role_id\" WHERE u.is_active AND r.is_active GROUP BY u.user_id'
+        query = f'SELECT u.user_id, u.identificator_nr, u.name, u.surname, ARRAY_AGG(DISTINCT r.role_name) AS roles FROM public."User" u FULL OUTER JOIN public."Role_User" ru ON ru."User_user_id"=u.user_id LEFT OUTER JOIN (SELECT * FROM public."Role" WHERE is_active) r ON r.role_id=ru."Role_role_id" WHERE u.is_active GROUP BY u.user_id'
         resp_new = database.getMany(cur, query)
         logging.info('Got inner users')
 
