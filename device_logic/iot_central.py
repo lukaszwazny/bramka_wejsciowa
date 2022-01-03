@@ -1,7 +1,11 @@
+import json
 import os
 from azure.iot.device.iothub.aio.async_clients import IoTHubDeviceClient
+from azure.iot.device.iothub.models.message import Message
+from azure.iot.device.iothub.models.methods import MethodResponse
 from azure.iot.device.provisioning.aio.async_provisioning_device_client import ProvisioningDeviceClient
 import asyncio
+import config
 
 def connect_device():
     provisioning_host = (
@@ -38,3 +42,27 @@ def connect_device():
         return device_client
     else:
         raise Exception("Couldn't connect device!")
+
+async def handle_command(command):
+    print(command.name, command.payload, command.request_id)
+    if command.name == 'open':
+        if command.payload.get('isTrue'):
+            config.got_open_request = True
+        else:
+            config.got_not_open_request = True
+
+    (response_status, response_payload) = (200, "OK")
+    command_response = MethodResponse.create_from_method_request(
+        method_request=command, status=response_status, payload=response_payload
+    )
+    try:
+        await config.device_client.send_method_response(command_response)
+    except Exception as e:
+        print("responding to the {command} command failed".format(command=command.name))
+
+def send_close_event():
+    msg = {'closed': 1}
+    msg = Message(json.dumps(msg))
+    msg.content_encoding = 'utf-8'
+    msg.content_type = 'application/json'
+    asyncio.run(config.device_client.send_message(msg))

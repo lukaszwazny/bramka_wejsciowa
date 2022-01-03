@@ -2,3 +2,4 @@ requests
 azure-iot-device
 asyncio
 adafruit-circuitpython-adxl34x
+RPi

@@ -1,13 +1,15 @@
 from serial.serialutil import SerialException
-from iot_central import connect_device
+from iot_central import connect_device, handle_command, send_close_event
 from accelerometer import connect_accelerometer, get_reference_values
 from helpers import wait_for_door_opened_and_closed
+import api
 import rdm6300_modified
 import config
 import relay
 
 try:
-    device_client = connect_device()
+    config.device_client = connect_device()
+    config.device_client.on_method_request_received = handle_command
     accelerometer = connect_accelerometer()
     reference_values = get_reference_values(accelerometer)
     relay.setup()
@@ -23,11 +25,21 @@ try:
             print(s_ex)
         if in_card:
             print('in ' + str(in_card.value))
+            func8resp = api.Function8(in_card.value)
+            config.got_not_open_request = config.got_open_request = False
+            while not config.got_open_request and not config.got_not_open_request:
+                if config.got_open_request:
+                    relay.open()
+                    wait_for_door_opened_and_closed(accelerometer, reference_values)
+                    relay.close()
+                    send_close_event()
         elif out_card:
             print('out ' + str(out_card.value))
             relay.open()
             wait_for_door_opened_and_closed(accelerometer, reference_values)
             relay.close()
+            resp = api.Function9(out_card.value)
+            print(resp.text)
 except Exception as ex:
     print(ex)
     relay.clean()
