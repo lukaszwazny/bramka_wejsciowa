@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  IOT_API_HOST: ""
+  API_HOST: ""
 };
 
 /*
