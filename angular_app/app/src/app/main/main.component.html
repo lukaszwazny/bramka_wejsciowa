@@ -1,0 +1,86 @@
+    <img src="../../assets/logo-placeholder.png">
+
+    <ng-lottie *ngIf="stepper.selectedIndex == 3" [options] = 'sorry' class="sorry-anim"></ng-lottie>
+
+    <mat-horizontal-stepper id="mat-stepper" class="vertical-center" #stepper>
+
+        <!-- START EKRAN 1 -->
+        <mat-step>
+            <div class="row screen-content">
+                <div class="row">
+                    <h1>Proszę przyłożyć kartę</h1>
+                </div>
+                <ng-lottie [options] = 'card' class="card-anim"></ng-lottie>
+            </div>
+
+        </mat-step>
+        <!-- END EKRAN 1 -->
+
+        <!-- START EKRAN 2 -->
+        <mat-step>
+            <div class="row screen-content">
+                <div class="row">
+                    <h1>Brak użytkownika</h1>
+                </div>
+                <ng-lottie [options] = 'lack' class="card-anim"></ng-lottie>
+            </div>
+
+        </mat-step>
+        <!-- END EKRAN 2 -->
+
+        <!-- START EKRAN 3 -->
+        <mat-step>
+            <div class="row screen-content">
+                <div class="row" style="margin-bottom: 30px;">
+                    <h1>Wchodzę jako:</h1>
+                </div>
+                <div class="row screen-content">
+                    <div class="col-4 select-box screen-content" *ngFor="let role of roles">
+                        <h2 style="margin: auto">{{role.name}}</h2>
+                    </div>
+                </div>
+            </div>
+        </mat-step>
+        <!-- END EKRAN 3 -->
+
+        <!-- START EKRAN 4 -->
+        <mat-step>
+            <div class="row screen-content">
+                <div class="row">
+                    <h1>Wejście niemożliwe</h1>
+                </div>
+                <div class="row">
+                    <h1>{{cause}}</h1>
+                </div>
+            </div>
+
+        </mat-step>
+        <!-- END EKRAN 4 -->
+
+        <!-- START EKRAN 5 -->
+        <mat-step>
+            <div class="row screen-content">
+                <div class="row" style="margin-bottom: 30px;">
+                    <h1>Wchodzę na:</h1>
+                </div>
+                <div class="row screen-content">
+                    <div class="col-4 select-box screen-content" *ngFor="let lesson of lessons">
+                        <h2 style="margin: auto">{{lesson.name}}</h2>
+                    </div>
+                </div>
+            </div>
+        </mat-step>
+        <!-- END EKRAN 5 -->
+
+        <!-- START EKRAN 6 -->
+        <mat-step>
+            <div class="row screen-content">
+                <div class="row">
+                    <h1>Zapraszamy!</h1>
+                </div>
+                <ng-lottie [options] = 'run' class="run-anim"></ng-lottie>
+            </div>
+        </mat-step>
+        <!-- END EKRAN 6 -->
+          
+    </mat-horizontal-stepper>

@@ -1,0 +1,54 @@
+img {
+    z-index: -1;
+    position: absolute;
+}
+
+.sorry-anim {
+    z-index: -1;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#mat-stepper {
+    z-index: 2;
+    background-color: transparent;
+    color: white;
+    width: 100%
+}
+
+::ng-deep .mat-horizontal-stepper-header{
+    display: none !important;
+}
+
+.screen-content {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.card-anim {
+    width: 400px;
+    margin: auto;
+}
+.run-anim {
+    width: 600px;
+    margin: auto;
+    margin-top: -100px;
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .select-box {
+      background-color: #898989;
+      height: 150px;
+      width: 250px;
+      margin: 10px;
+  }
