@@ -9,7 +9,7 @@ from shared_code import database
 from shared_code.helpers import safe_list_get, get_key, get_url, send_entrance_to_app
 
 import azure.functions as func
-import Function7
+import Function34
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -79,5 +79,5 @@ def funtion7(identicator_nr):
         identificator_nr=identificator_nr
     )
     fun7_req = func.HttpRequest('get', '', params=params, body='')
-    resp = Function7.main(fun7_req).get_body()
+    resp = Function34.main(fun7_req).get_body()
     return resp
