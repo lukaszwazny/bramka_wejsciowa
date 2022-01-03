@@ -22,7 +22,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         try:
 
             cur = database.connectPostgres()
-            query = f"SELECT * FROM public.\"Entrance\" WHERE mode = \'WYJŚCIE\' AND identificator_nr=\'{identificator_nr}\' ORDER BY e.datetime DESC"  
+            query = f"SELECT * FROM public.\"Entrance\" WHERE mode = \'WYJŚCIE\' AND identificator_nr=\'{identificator_nr}\' ORDER BY datetime DESC"  
             last_entr_datetime = database.getOne(cur, query).get('datetime')
 
             query = f"SELECT * FROM public.\"Parameter\" WHERE name=\'Parametr x\'"
@@ -34,7 +34,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 )
 
             if last_entr_datetime and ((datetime.now().astimezone() - last_entr_datetime).total_seconds()/60) < x:
-                query = f"SELECT * FROM public.\"Entrance\" WHERE mode = \'WEJŚCIE\' AND identificator_nr=\'{identificator_nr}\' ORDER BY e.datetime DESC"
+                query = f"SELECT * FROM public.\"Entrance\" WHERE mode = \'WEJŚCIE\' AND identificator_nr=\'{identificator_nr}\' ORDER BY datetime DESC"
                 last_entr = database.getOne(cur, query)
                 if last_entr and last_entr.get('lesson_type_id'):
                     locale.setlocale(locale.LC_ALL, 'pl_PL')
@@ -73,7 +73,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
              status_code=400
         )
 
-def funtion7(identicator_nr):
+def funtion7(identificator_nr):
     params = dict(
         code=get_key(),
         identificator_nr=identificator_nr

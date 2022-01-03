@@ -16,7 +16,7 @@ def get_key():
 
 def send_not_opening_command():
     url = os.environ['iotCentralHost'] + "ident/commands/open?api-version=1.0"
-    payload = {request: {isTrue: False}}
+    payload = {'request': {isTrue: False}}
     payload=json.dumps(payload)
     headers = {
         'Authorization': os.environ['iotCentralToken'],
@@ -27,7 +27,7 @@ def send_not_opening_command():
 
 def send_opening_command():
     url = os.environ['iotCentralHost'] + "ident/commands/open?api-version=1.0"
-    payload = {request: {isTrue: True}}
+    payload = {'request': {isTrue: True}}
     payload=json.dumps(payload)
     headers = {
         'Authorization': os.environ['iotCentralToken'],
@@ -38,8 +38,9 @@ def send_opening_command():
 
 def send_user_to_app(user):
     url = os.environ['iotCentralHost'] + "ap_ident/commands/gotUser?api-version=1.0"
-    payload = {request: user}
-    payload=json.dumps(payload)
+    user.pop('additional_info')
+    payload = {'request': user}
+    payload=json.dumps(payload, default=str, ensure_ascii=False)
     headers = {
         'Authorization': os.environ['iotCentralToken'],
         'Content-Type': 'application/json'
@@ -49,8 +50,8 @@ def send_user_to_app(user):
 
 def send_entrance_to_app(entrance):
     url = os.environ['iotCentralHost'] + "ap_ident/commands/gotEntrance?api-version=1.0"
-    payload = {request: entrance}
-    payload=json.dumps(payload)
+    payload = {'request': entrance}
+    payload=json.dumps(payload, default=str, ensure_ascii=False)
     headers = {
         'Authorization': os.environ['iotCentralToken'],
         'Content-Type': 'application/json'
