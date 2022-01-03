@@ -9,6 +9,16 @@
             "console": "integratedTerminal"
         },
         {
+            "name": "Python: Current File with sudo",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${file}",
+            "console": "externalTerminal",
+            "sudo": true,
+            "justMyCode": false
+        },
+        {
             "name": "Attach to Python Functions",
             "type": "python",
             "request": "attach",

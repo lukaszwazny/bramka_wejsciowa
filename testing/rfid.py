@@ -3,8 +3,9 @@ import rdm6300
 reader = rdm6300.Reader('/dev/ttyTHS1')
 while True:
     card = reader.read()
-    print(card)
+    #print(card)
     if card:
+        print('elo')
         print(f"[{card.value}] read card {card}")
 
 #!/usr/bin/env python
