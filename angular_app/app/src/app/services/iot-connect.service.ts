@@ -4,6 +4,7 @@ import {ProvisioningDeviceClient} from 'azure-iot-provisioning-device'
 import { SymmetricKeySecurityClient } from 'azure-iot-security-symmetric-key';
 import { MqttWs as ProvisioningTransport }  from 'azure-iot-provisioning-device-mqtt';
 import { MqttWs as DeviceTransport} from 'azure-iot-device-mqtt';
+import { NoRetry } from 'azure-iot-common'
 import { Client, DeviceClientOptions, Message } from 'azure-iot-device';
 
 @Injectable({
@@ -42,20 +43,9 @@ export class IotConnectService {
     let deviceClient = Client.fromConnectionString(connectionString, DeviceTransport);
     await deviceClient.setOptions({modelId: model_id, productInfo: model_id});
 
-    deviceClient.open(function (err) {
-      if (err) {
-        console.log('Client not connected!');
-        deviceClient.open(function (_err) {
-          if (_err) {
-            console.log('Client not connected!');
-          } else {
-            console.log('Client connected');
-          }});
-      } else {
-        console.log('Client connected');
-      }});
-
-    console.log('siemanko')
+    return new Promise<Client>(resolve => {
+      resolve(deviceClient);
+    })
 
   }
 }
