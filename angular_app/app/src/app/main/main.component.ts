@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper/stepper';
 import { AnimationOptions } from 'ngx-lottie';
+import { IotConnectService } from '../services/iot-connect.service';
 
 @Component({
   selector: 'app-main',
@@ -44,10 +45,11 @@ export class MainComponent implements OnInit {
 
   cause : String = ""
 
-  constructor() { }
+  constructor(private iotConnectService: IotConnectService) {}
+
 
   ngOnInit(): void {
-    
+    this.iotConnectService.connectDevice()
   }
 
   ngAfterViewInit() {
