@@ -39,55 +39,23 @@ export class IotConnectService {
     let connectionString = 'HostName=' + registeredDevice?.assignedHub 
           + ';DeviceId=' + registeredDevice?.deviceId 
           + ';SharedAccessKey=' + symmetric_key;
-    //let deviceClient = Client.fromConnectionString(connectionString, DeviceTransport);
-    let deviceClient = Client.fromConnectionString('HostName=iotc-0ef9c35c-5689-4fc8-8b9a-c859316e0ce2.azure-devices.net;DeviceId=ident;SharedAccessKey=324tSOCfFNiSbu5V2FPDt9uhLfhNNb4UbcoV4OTlwSM=', DeviceTransport);
-    //await deviceClient.setOptions({modelId: model_id, productInfo: model_id});
-    await deviceClient.setOptions({modelId: 'dtmi:modelDefinition:tzldmlsv:d1fwmhq00dg'});
+    let deviceClient = Client.fromConnectionString(connectionString, DeviceTransport);
+    await deviceClient.setOptions({modelId: model_id, productInfo: model_id});
 
-    let connectionStatus;
-    // try {
-      connectionStatus = await deviceClient.open()
-    // }
-    // catch (error)
-    // {
-    //   connectionStatus = error
-    // }
-    const msg = new Message(
-      JSON.stringify(
-        {siemanko: "siemanko"}
-      )
-    );
-    msg.contentType = 'application/json';
-    msg.contentEncoding = 'utf-8';
-    await deviceClient.sendEvent(msg);
-    
-        //   if (err) {
-        //     console.log('Device not connected!');
-        //     return err;
-        //   } else {
-        //     console.log('Device connected!');
-        //     return hubClient;
-        //   }
-        // });
-    console.log('siema')
-    // if registration_result.status == "assigned":
-    //     print("Device was assigned")
-    // else:
-    //     raise Exception("Couldn't assign the device!")
+    deviceClient.open(function (err) {
+      if (err) {
+        console.log('Client not connected!');
+        deviceClient.open(function (_err) {
+          if (_err) {
+            console.log('Client not connected!');
+          } else {
+            console.log('Client connected');
+          }});
+      } else {
+        console.log('Client connected');
+      }});
 
-    // device_client = IoTHubDeviceClient.create_from_symmetric_key(
-    //         symmetric_key=symmetric_key,
-    //         hostname=registration_result.registration_state.assigned_hub,
-    //         device_id=registration_result.registration_state.device_id,
-    //         product_info=model_id,
-    //     )
-    // asyncio.run(device_client.connect())
-    // if device_client.connected:
-    //     print("Device was connected")
-    //     return device_client
-    // else:
-    //     raise Exception("Couldn't connect device!")
-    // }
+    console.log('siemanko')
 
   }
 }
