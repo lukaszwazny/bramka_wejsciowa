@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import {environment} from '../../environments/environment'
 import {ProvisioningDeviceClient} from 'azure-iot-provisioning-device'
 import { SymmetricKeySecurityClient } from 'azure-iot-security-symmetric-key';
-import { Mqtt as ProvisioningTransport }  from 'azure-iot-provisioning-device-mqtt';
-import { Mqtt as DeviceTransport} from 'azure-iot-device-mqtt';
-import { Client, DeviceClientOptions } from 'azure-iot-device';
+import { MqttWs as ProvisioningTransport }  from 'azure-iot-provisioning-device-mqtt';
+import { MqttWs as DeviceTransport} from 'azure-iot-device-mqtt';
+import { Client, DeviceClientOptions, Message } from 'azure-iot-device';
 
 @Injectable({
   providedIn: 'root'
@@ -39,10 +39,28 @@ export class IotConnectService {
     let connectionString = 'HostName=' + registeredDevice?.assignedHub 
           + ';DeviceId=' + registeredDevice?.deviceId 
           + ';SharedAccessKey=' + symmetric_key;
-    let hubClient = Client.fromConnectionString(connectionString, DeviceTransport);
-    await hubClient.setOptions({modelId: model_id, productInfo: model_id});
+    //let deviceClient = Client.fromConnectionString(connectionString, DeviceTransport);
+    let deviceClient = Client.fromConnectionString('HostName=iotc-0ef9c35c-5689-4fc8-8b9a-c859316e0ce2.azure-devices.net;DeviceId=ident;SharedAccessKey=324tSOCfFNiSbu5V2FPDt9uhLfhNNb4UbcoV4OTlwSM=', DeviceTransport);
+    //await deviceClient.setOptions({modelId: model_id, productInfo: model_id});
+    await deviceClient.setOptions({modelId: 'dtmi:modelDefinition:tzldmlsv:d1fwmhq00dg'});
 
-    let deviceClient = await hubClient.open()
+    let connectionStatus;
+    // try {
+      connectionStatus = await deviceClient.open()
+    // }
+    // catch (error)
+    // {
+    //   connectionStatus = error
+    // }
+    const msg = new Message(
+      JSON.stringify(
+        {siemanko: "siemanko"}
+      )
+    );
+    msg.contentType = 'application/json';
+    msg.contentEncoding = 'utf-8';
+    await deviceClient.sendEvent(msg);
+    
         //   if (err) {
         //     console.log('Device not connected!');
         //     return err;
