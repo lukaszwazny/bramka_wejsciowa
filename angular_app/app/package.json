@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
     "azure-iot-device": "^1.17.8",
+    "azure-iot-device-http": "^1.13.8",
     "azure-iot-device-mqtt": "^1.15.8",
     "azure-iot-provisioning-device": "^1.8.12",
     "azure-iot-provisioning-device-mqtt": "^1.7.12",

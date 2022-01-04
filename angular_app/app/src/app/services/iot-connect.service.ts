@@ -40,12 +40,10 @@ export class IotConnectService {
     let connectionString = 'HostName=' + registeredDevice?.assignedHub 
           + ';DeviceId=' + registeredDevice?.deviceId 
           + ';SharedAccessKey=' + symmetric_key;
-    let deviceClient = Client.fromConnectionString(connectionString, DeviceTransport);
+    let deviceClient : Client = Client.fromConnectionString(connectionString, DeviceTransport);
     await deviceClient.setOptions({modelId: model_id, productInfo: model_id});
 
-    return new Promise<Client>(resolve => {
-      resolve(deviceClient);
-    })
+    return deviceClient
 
   }
 }

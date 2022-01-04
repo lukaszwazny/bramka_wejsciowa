@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper/stepper';
+import { Client } from 'azure-iot-device';
 import { AnimationOptions } from 'ngx-lottie';
 import { IotConnectService } from '../services/iot-connect.service';
+import { sleep } from '../services/utils';
 
 @Component({
   selector: 'app-main',
@@ -45,11 +47,23 @@ export class MainComponent implements OnInit {
 
   cause : String = ""
 
+  deviceClient:any
+
   constructor(private iotConnectService: IotConnectService) {}
 
 
   ngOnInit(): void {
-    this.iotConnectService.connectDevice()
+    this.iotConnectService.connectDevice().then((_deviceClient) => {
+      console.log(_deviceClient)
+      this.deviceClient = _deviceClient
+      this.deviceClient.open(function (err:any) {
+        if (err) {
+          console.log('Client not connected!');
+        } else {
+          console.log('Client connected');
+        }});
+      sleep(500)
+    })
   }
 
   ngAfterViewInit() {
