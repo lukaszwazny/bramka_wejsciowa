@@ -37,37 +37,96 @@ export class MainComponent implements OnInit {
     {id: 4, name: 'PILATES'},
   ]
 
-  roles = [
-    {id: 1, name: 'KLIENT'},
-    {id: 2, name: 'TRENER'},
-    {id: 3, name: 'WIDZ'},
-    {id: 4, name: 'RECEPCJA'},
-    {id: 5, name: 'ADMIN'},
-  ]
+  identificator_nr?:string
+  roles?:Array<string>
 
-  cause : String = ""
+  cause ?: String
 
   deviceClient:any
+  gotComand:boolean
 
-  constructor(private iotConnectService: IotConnectService) {}
+  constructor(private iotConnectService: IotConnectService) {this.gotComand = false}
 
+  async commandHandler(request:any, response:any) {
+    if (!this.gotComand){
+      this.gotComand = true
+      switch (request.methodName) {
+      case 'gotUser': {
+        console.log(request)
+        //await this.sendCommandResponse(request, response, 200, 'ok');
+        if (request.payload?.identificator_nr){
+          this.identificator_nr = request.payload?.identificator_nr
+          this.roles = request.payload?.roles
+        } else {
+          this.stepper.selectedIndex = 1;
+          //this.stepper.selected = this.stepper.steps.get(1)
+          console.log(this.stepper.selectedIndex)
+          console.log(this)
+          // setTimeout( () => {
+          //   this.stepper.selectedIndex = 0;
+          //   console.log('screen 0')
+          // }, 3000)
+        }
+        
+        break;
+      }
+      case 'gotEntrance': {
+        console.log(request)
+        break;
+      }
+      default:
+        //await this.sendCommandResponse(request, response, 404, 'unknown method');
+        break;
+      }
+      this.gotComand = false
+    } else {
+      //await this.sendCommandResponse(request, response, 404, 'application now busy');
+    }
+    
+  }
+
+  async sendCommandResponse(request:any, response:any, status:any, payload:any){
+    try {
+      await response.send(status, payload);
+      console.log('Response to method \'' + request.methodName +
+                '\' sent successfully.' );
+    } catch (err:any) {
+      console.error('An error ocurred when sending a method response:\n' +
+                err.toString());
+    }
+  }
 
   ngOnInit(): void {
-    this.iotConnectService.connectDevice().then((_deviceClient) => {
+    this.iotConnectService.connectDevice().then(_deviceClient => {
       console.log(_deviceClient)
       this.deviceClient = _deviceClient
-      this.deviceClient.open(function (err:any) {
+      this.deviceClient.open((err: any) => {
         if (err) {
           console.log('Client not connected!');
         } else {
           console.log('Client connected');
-        }});
-      sleep(500)
+          this.deviceClient.onDeviceMethod('gotUser', 
+            this.commandHandler.bind(this))
+          this.deviceClient.onDeviceMethod('gotEntrance', (request:any, response:any) => {this.commandHandler(request, response)})
+        }
+      });
+      sleep(700)
     })
   }
 
   ngAfterViewInit() {
     console.log(this.stepper); // correctly outputs the element in console, not undefined
-}
+    this.stepper.steps.forEach(Step => {
+      Step.completed = false;
+    });
+  }
+
+  setScreen(i:number){
+    this.stepper.linear = false;
+    this.stepper.selectedIndex = i;
+    setTimeout(() => {
+       this.stepper.linear = true;
+    });
+  }
 
 }

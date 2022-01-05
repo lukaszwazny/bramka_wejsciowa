@@ -2,7 +2,7 @@
 
     <ng-lottie *ngIf="stepper.selectedIndex == 3" [options] = 'sorry' class="sorry-anim"></ng-lottie>
 
-    <mat-horizontal-stepper id="mat-stepper" class="vertical-center" #stepper>
+    <mat-horizontal-stepper id="mat-stepper" [linear]="false" class="vertical-center" #stepper>
 
         <!-- START EKRAN 1 -->
         <mat-step>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="row screen-content">
                     <div class="col-4 select-box screen-content" *ngFor="let role of roles">
-                        <h2 style="margin: auto">{{role.name}}</h2>
+                        <h2 style="margin: auto">{{role}}</h2>
                     </div>
                 </div>
             </div>
