@@ -35,7 +35,7 @@
                     <h1>Wchodzę jako:</h1>
                 </div>
                 <div class="row screen-content">
-                    <div class="col-4 select-box screen-content" *ngFor="let role of roles">
+                    <div class="col-4 select-box screen-content" *ngFor="let role of roles" (click)="handleIdAndRole(role)">
                         <h2 style="margin: auto">{{role}}</h2>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                     <h1>Wchodzę na:</h1>
                 </div>
                 <div class="row screen-content">
-                    <div class="col-4 select-box screen-content" *ngFor="let lesson of lessons">
+                    <div class="col-4 select-box screen-content" *ngFor="let lesson of lessons" (click)="handleLessonChoose(lesson)">
                         <h2 style="margin: auto">{{lesson.name}}</h2>
                     </div>
                 </div>
