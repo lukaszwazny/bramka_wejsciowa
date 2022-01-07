@@ -16,7 +16,7 @@ def get_key():
 
 def send_not_opening_command():
     url = os.environ['iotCentralHost'] + "ident/commands/open?api-version=1.0"
-    payload = {'request': {isTrue: False}}
+    payload = {'request': {'isTrue': False}}
     payload=json.dumps(payload)
     headers = {
         'Authorization': os.environ['iotCentralToken'],
@@ -27,7 +27,7 @@ def send_not_opening_command():
 
 def send_opening_command():
     url = os.environ['iotCentralHost'] + "ident/commands/open?api-version=1.0"
-    payload = {'request': {isTrue: True}}
+    payload = {'request': {'isTrue': True}}
     payload=json.dumps(payload)
     headers = {
         'Authorization': os.environ['iotCentralToken'],
