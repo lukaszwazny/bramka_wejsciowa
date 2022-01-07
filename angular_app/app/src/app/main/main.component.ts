@@ -131,7 +131,7 @@ export class MainComponent implements OnInit {
             this.commandHandler.bind(this))
         }
       });
-      sleep(700)
+      sleep(1000)
     })
   }
 
