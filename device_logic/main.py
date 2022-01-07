@@ -6,6 +6,7 @@ import api
 import rdm6300_modified
 import config
 import relay
+import threading
 
 try:
     config.device_client = connect_device()
@@ -25,7 +26,7 @@ try:
             print(s_ex)
         if in_card:
             print('in ' + str(in_card.value))
-            func8resp = api.Function8(in_card.value)
+            threading.Thread(target=api.Function8, args=[in_card.value]).start()
             config.got_not_open_request = config.got_open_request = False
             while not config.got_open_request and not config.got_not_open_request:
                 if config.got_open_request:

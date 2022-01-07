@@ -11,7 +11,7 @@ def Function9(ident_nr):
     }
     return requests.request('POST', url, headers=headers, data=payload)
 
-async def Function8(ident_nr):
+def Function8(ident_nr):
     url = os.environ.get('API_HOST') + 'Function8?identificator_nr=' + str(ident_nr)
     payload = {}
     headers = {
