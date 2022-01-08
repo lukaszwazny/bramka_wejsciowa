@@ -36,6 +36,17 @@ def send_opening_command():
     response = requests.request("POST", url, headers=headers, data=payload)
     return response
 
+def send_remote_opening_command():
+    url = os.environ['iotCentralHost'] + "ident/commands/open?api-version=1.0"
+    payload = {'request': {'isRemote': True}}
+    payload=json.dumps(payload)
+    headers = {
+        'Authorization': os.environ['iotCentralToken'],
+        'Content-Type': 'application/json'
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    return response
+
 def send_user_to_app(user):
     url = os.environ['iotCentralHost'] + "ap_ident/commands/gotUser?api-version=1.0"
     user.pop('additional_info')

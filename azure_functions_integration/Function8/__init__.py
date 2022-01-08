@@ -42,13 +42,13 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                     query = f"SELECT * FROM public.\"Lesson\" WHERE lesson_type_id={last_entr.get('lesson_type_id')} AND weekday=\'{weekday_name_now}\' AND is_active"
                     lesson = database.getOne(cur, query)
                     if lesson and lesson.get('start_time') < datetime.now().astimezone().timetz() < lesson.get('end_time'):
-                        if send_entrance_to_app(last_entrance).status_code != 200:
+                        if not (199 < send_entrance_to_app(last_entrance).status_code < 300):
                             raise Exception()
                         resp = 'siema'
                     else:
                         resp = funtion7(identicator_nr)
                 else:
-                    if send_entrance_to_app(last_entrance).status_code != 200:
+                    if not (199 < send_entrance_to_app(last_entrance).status_code < 300):
                             raise Exception()
                     resp = 'siema'
             else:

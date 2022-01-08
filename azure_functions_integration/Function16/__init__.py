@@ -20,7 +20,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     try:
 
         fun6_req = func.HttpRequest('get', '', params={}, body='')
-        resp = json.loads(Function6.main(fun6_req).get_body())
+        resp = Function6.main(fun6_req)
+        if resp.status_code != 200:
+            resp = []
+        else:
+            resp = json.loads(resp.get_body())
         logging.info('Got outer users')
 
         cur = database.connectPostgres()
@@ -28,12 +32,13 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         resp_new = database.getMany(cur, query)
         logging.info('Got inner users')
 
-        for idx, r in enumerate(resp):
-            for d in resp_new:
-                if d['identificator_nr']==r['identificator_nr']:
-                    d['roles'] = d['roles'] + r['roles']
-                    resp.pop(idx)
-        logging.info('Concatenated roles of users')
+        if resp != []:
+            for idx, r in enumerate(resp):
+                for d in resp_new:
+                    if d['identificator_nr']==r['identificator_nr']:
+                        d['roles'] = d['roles'] + r['roles']
+                        resp.pop(idx)
+            logging.info('Concatenated roles of users')
         
         users = resp + resp_new
         logging.info('Concatenated users')

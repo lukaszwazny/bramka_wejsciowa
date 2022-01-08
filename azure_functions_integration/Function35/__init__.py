@@ -2,7 +2,7 @@ import logging
 
 import azure.functions as func
 
-from helpers import send_entrance_to_app
+from shared_code.helpers import send_entrance_to_app
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:

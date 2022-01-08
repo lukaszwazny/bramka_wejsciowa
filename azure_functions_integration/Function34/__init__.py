@@ -20,12 +20,12 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         try:
             resp = get_active_user(identificator_nr)
 
-            if send_user_to_app(resp).status_code != 200:
+            if not (199 < send_user_to_app(resp).status_code < 300):
                 send_not_opening_command()
                 raise Exception()
 
             if (resp.get('user_id') == None) and (resp.get('ID') == None):
-                if send_not_opening_command().status_code != 200:
+                if not (199 < send_not_opening_command().status_code < 300):
                     raise Exception()
 
             if type(resp) is Exception:

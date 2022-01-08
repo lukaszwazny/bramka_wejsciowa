@@ -4,7 +4,7 @@ from datetime import datetime
 import requests
 
 from shared_code import database
-from shared_code.helpers import safe_list_get, get_url, get_key, send_opening_command
+from shared_code.helpers import safe_list_get, get_url, get_key, send_remote_opening_command
 
 import azure.functions as func
 
@@ -16,7 +16,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         req_body = req.get_json()
         justification = req_body.get('justification')
         if justification:
-            if send_opening_command().status_code != 200:
+            if not ( 199 < send_remote_opening_command().status_code < 300):
                 raise Exception()
 
             date = datetime.now().astimezone().date()

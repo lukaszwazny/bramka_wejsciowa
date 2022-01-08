@@ -14,7 +14,11 @@ def get_user(identificator_nr):
             identificator_nr=identificator_nr
         )
         fun1_req = func.HttpRequest('get', '', params=params, body='')
-        resp = json.loads(Function1.main(fun1_req).get_body())
+        resp = Function1.main(fun1_req)
+        if resp.status_code != 200:
+            resp = None
+        else:
+            resp = json.loads(resp.get_body())
 
         cur = database.connectPostgres()
         cur.execute(f'SELECT * FROM public."User" WHERE identificator_nr = \'{identificator_nr}\'')
@@ -24,7 +28,7 @@ def get_user(identificator_nr):
             if safe_list_get(resp_new, i, None):
                 resp[names[i]] = safe_list_get(resp_new, i, None)
 
-        if resp.get('user_id'):
+        if resp and resp.get('user_id'):
             query = f"SELECT * FROM public.\"Role_User\" RIGHT OUTER JOIN public.\"Role\" ON role_id = \"Role_role_id\"  WHERE \"User_user_id\" = {resp['user_id']} AND is_active"
             resp_new = database.getMany(cur, query)
             resp_new = [item['role_name'] for item in resp_new]
@@ -42,7 +46,11 @@ def get_active_user(identificator_nr):
             identificator_nr=identificator_nr
         )
         fun1_req = func.HttpRequest('get', '', params=params, body='')
-        resp = json.loads(Function1.main(fun1_req).get_body())
+        resp = Function1.main(fun1_req)
+        if resp.status_code != 200:
+            resp = None
+        else:
+            resp = json.loads(resp.get_body())
 
         cur = database.connectPostgres()
         cur.execute(f'SELECT * FROM public."User" WHERE identificator_nr = \'{identificator_nr}\' AND is_active')
@@ -52,7 +60,7 @@ def get_active_user(identificator_nr):
             if safe_list_get(resp_new, i, None):
                 resp[names[i]] = safe_list_get(resp_new, i, None)
 
-        if resp.get('user_id'):
+        if resp and resp.get('user_id'):
             query = f"SELECT * FROM public.\"Role_User\" RIGHT OUTER JOIN public.\"Role\" ON role_id = \"Role_role_id\"  WHERE \"User_user_id\" = {resp['user_id']} AND is_active"
             resp_new = database.getMany(cur, query)
             resp_new = [item['role_name'] for item in resp_new]
@@ -73,7 +81,11 @@ def get_users(identificator_nrs):
         else:
             params = {}
         fun6_req = func.HttpRequest('get', '', params=params, body='')
-        resp = json.loads(Function6.main(fun6_req).get_body())
+        resp = Function6.main(fun6_req)
+        if resp.status_code != 200:
+            resp = []
+        else:
+            resp = json.loads(resp.get_body())
 
         cur = database.connectPostgres()
         if identificator_nrs:
@@ -98,7 +110,11 @@ def get_users(identificator_nrs):
 def get_active_users():
     try:
         fun6_req = func.HttpRequest('get', '', params={}, body='')
-        resp = json.loads(Function6.main(fun6_req).get_body())
+        resp = Function6.main(fun6_req)
+        if resp.status_code != 200:
+            resp = []
+        else:
+            resp = json.loads(resp.get_body())
 
         cur = database.connectPostgres()
         query = f'SELECT * FROM public."User" WHERE is_active'

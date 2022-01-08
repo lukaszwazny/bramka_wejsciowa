@@ -21,7 +21,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         lesson_type_id = req_body.get('lesson_type_id')
         justification = req_body.get('justification')
 
-        if send_opening_command().status_code != 200:
+        if not (199 < send_opening_command().status_code < 300):
             raise Exception()
 
         date = datetime.now().astimezone().date()

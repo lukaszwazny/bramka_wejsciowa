@@ -37,7 +37,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             )
         else:
             resp = get_user(entrance.get('identificator_nr'))
-            if type(resp) is Exception():
+            if not resp or type(resp) is Exception():
                 resp = dict(
                     name=' ',surname=' '
                 )

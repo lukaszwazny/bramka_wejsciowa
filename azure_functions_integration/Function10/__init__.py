@@ -43,7 +43,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 resp = Function2.main(fun2_req)
                 if resp.status_code != 200:
 
-                    if send_not_opening_command().status_code != 200:
+                    if not (199 < send_not_opening_command().status_code < 300):
                         raise Exception()
 
                     if resp.status_code == 400:
@@ -68,7 +68,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                         description = justification.get('description')
                     )
                 else:
-                    if send_not_opening_command().status_code != 200:
+                    if not (199 < send_not_opening_command().status_code < 300):
                         raise Exception()
                     response['reason_of_disallowance'] = 'Brak uprawnień do wejścia'
             else:
