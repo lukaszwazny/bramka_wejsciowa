@@ -89,6 +89,7 @@ export class MainComponent implements OnInit {
           this.stepper.selectedIndex = 0;
           this.refresh()
           console.log('screen 0')
+          this.gotComand = false
           break;
         }
         this.identificator_nr = request.payload?.identificator_nr
