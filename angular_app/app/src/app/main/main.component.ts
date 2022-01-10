@@ -170,7 +170,7 @@ export class MainComponent implements OnInit {
                   }
                 })
             } else {
-              this.handleEntrance(undefined, res?.justification, undefined)
+              this.handleEntrance(undefined, res?.justification?.description, undefined)
             }
             
           } else {
