@@ -49,7 +49,8 @@ export class ApiService {
     const options = {
       headers:{
         "Ocp-Apim-Subscription-Key": environment.OCIM_APIM_SUBSCRIPTION_KEY
-      }
+      },
+      "responseType": 'text' as 'text'
     }
     const body = {
       identificator_nr: _identificator_nr,
