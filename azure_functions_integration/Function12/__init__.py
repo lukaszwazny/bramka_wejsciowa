@@ -4,7 +4,7 @@ from datetime import datetime
 import requests
 
 from shared_code import database
-from shared_code.helpers import safe_list_get, get_url, get_key
+from shared_code.helpers import safe_list_get, get_url, get_key, send_opening_command
 
 import azure.functions as func
 import Function4

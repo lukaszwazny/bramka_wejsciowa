@@ -22,7 +22,7 @@ def send_not_opening_command():
         'Authorization': os.environ['iotCentralToken'],
         'Content-Type': 'application/json'
     }
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", url, headers=headers, data=payload.encode('utf-8'))
     return response
 
 def send_opening_command():
@@ -33,7 +33,7 @@ def send_opening_command():
         'Authorization': os.environ['iotCentralToken'],
         'Content-Type': 'application/json'
     }
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", url, headers=headers, data=payload.encode('utf-8'))
     return response
 
 def send_remote_opening_command():
@@ -44,7 +44,7 @@ def send_remote_opening_command():
         'Authorization': os.environ['iotCentralToken'],
         'Content-Type': 'application/json'
     }
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", url, headers=headers, data=payload.encode('utf-8'))
     return response
 
 def send_user_to_app(user):
@@ -56,7 +56,7 @@ def send_user_to_app(user):
         'Authorization': os.environ['iotCentralToken'],
         'Content-Type': 'application/json'
     }
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", url, headers=headers, data=payload.encode('utf-8'))
     return response
 
 def send_entrance_to_app(entrance):
@@ -67,5 +67,5 @@ def send_entrance_to_app(entrance):
         'Authorization': os.environ['iotCentralToken'],
         'Content-Type': 'application/json'
     }
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", url, headers=headers, data=payload.encode('utf-8'))
     return response
