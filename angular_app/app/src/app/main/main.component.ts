@@ -160,7 +160,7 @@ export class MainComponent implements OnInit {
                 .subscribe({
                   next: (_res:any) => {
                     this.lessons = _res.map( (r:any) => {
-                      return {id: r.lesson_id, name: r.name}
+                      return {id: r.lesson_type_id, name: r.name}
                     })
                     this.stepper.selectedIndex = 4
                     this.refresh()
