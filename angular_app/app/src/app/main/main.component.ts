@@ -86,7 +86,9 @@ export class MainComponent implements OnInit {
       case 'gotEntrance': {
         await this.sendCommandResponse(request, response, 200, 'ok')
         if (request.payload?.role_name == "MaRiAn"){
-          this.backToFirstScreen()
+          this.stepper.selectedIndex = 0;
+          this.refresh()
+          console.log('screen 0')
           break;
         }
         this.identificator_nr = request.payload?.identificator_nr
