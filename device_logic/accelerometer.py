@@ -86,7 +86,8 @@ def testing():
     while True:
         was_closed = is_closed
         angle = math.pow(get_angle(accelerometer, ref_val)[0], 3)
-        if  angle > math.pow(config.opening_angle, 3):
+        print(angle)
+        if angle > math.pow(config.opening_angle, 3):
             is_closed=True
         if angle < math.pow(config.closing_angle, 3):
             is_closed=False
@@ -94,3 +95,5 @@ def testing():
             print('opened')
         if not was_closed and is_closed:
             print('closed')
+
+#testing()

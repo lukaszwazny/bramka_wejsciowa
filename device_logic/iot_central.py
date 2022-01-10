@@ -48,6 +48,8 @@ async def handle_command(command):
     if command.name == 'open':
         if command.payload.get('isTrue'):
             config.got_open_request = True
+        elif command.payload.get('isRemote'):
+            config.remote_open = True
         else:
             config.got_not_open_request = True
 

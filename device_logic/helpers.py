@@ -10,5 +10,6 @@ def wait_for_door_opened_and_closed(accel, ref_val):
         angle = math.pow(get_angle(accel, ref_val)[0], 3)
         if angle < math.pow(config.opening_angle, 3):
             was_opened = True
+            print('was_opened')
         if angle > math.pow(config.closing_angle, 3) and was_opened:
             can_be_closed = True
