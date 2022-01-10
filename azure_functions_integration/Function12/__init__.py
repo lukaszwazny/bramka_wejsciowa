@@ -34,7 +34,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             package_id=package.get('package_id') if package else None,
             lesson=lesson_type_id
         )
-        fun4_req = func.HttpRequest('post', '', params={}, body=json.dumps(data, ensure_ascii=False))
+        fun4_req = func.HttpRequest('post', '', params={}, body=json.dumps(data, ensure_ascii=False).encode('utf-8'))
         resp = Function4.main(fun4_req)
 
         cur = database.connectPostgres()
