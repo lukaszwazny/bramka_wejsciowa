@@ -27,7 +27,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 date=date.strftime('%Y-%m-%d'),
                 hour=hour.strftime('%H:%M:%S')
             )
-            fun5_req = func.HttpRequest('patch', '', params={}, body=json.dumps(data, ensure_ascii=False))
+            fun5_req = func.HttpRequest('patch', '', params={}, body=json.dumps(data, ensure_ascii=False).encode('utf-8'))
             resp = Function5.main(fun5_req)
 
             cur = database.connectPostgres()
