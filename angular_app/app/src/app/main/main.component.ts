@@ -140,7 +140,7 @@ export class MainComponent implements OnInit {
       this.stepper.selectedIndex = 0;
       this.refresh()
       console.log('screen 0')
-    }, 3000)
+    }, 5000)
     this.gotComand = false
   }
 
